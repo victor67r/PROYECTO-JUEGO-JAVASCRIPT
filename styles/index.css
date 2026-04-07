@@ -1,0 +1,31 @@
+body{
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+#mesa{
+    width: 800px;
+    height: 600px;
+    background-color: rgb(160, 97, 15);
+    border: 8px solid rgb(105, 87, 87);
+    position: relative;
+    overflow: hidden;
+}
+
+.documento{
+    width: 150px;
+    height: 220px;
+    background-color: bisque;
+    border: 2px solid black;
+    border-radius: 5px;
+    position: absolute;
+}
+
+#pasaporte{
+    text-align: center;
+}
