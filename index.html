@@ -10,10 +10,35 @@
 <body>
     
 <div id="pantallaInicio">
-  <button id="botonEmpezar" onclick="empezarJuego()">Empezar Partida</button>
+  <button id="botonEmpezar" onclick="mostrarInstrucciones()">Empezar Partida</button>
   <button id="botonMusica" onclick="toggleMusica()">🔊</button>
+  <audio id="musicaFondo" src="musica/inicio/Level_One_Arrival.mp3" loop autoplay></audio>
+</div>
 
-  <audio id="musicaFondo" src="assets/musica.mp3" loop autoplay></audio>
+<<div id="pantallaInstrucciones" style="display:none;">
+
+  <h1>BIENVENIDO OFICIAL</h1>
+
+  <p>Has sido asignado al control de embarque del aeropuerto internacional de Drakonia.</p>
+
+  <p>Tu trabajo es revisar cuidadosamente los documentos de los pasajeros antes de permitirles subir al avión.</p>
+
+  <p>Cada pasajero presentará:</p>
+
+  <ul>
+    <li>Pasaporte</li>
+    <li>Tarjeta de embarque</li>
+    <li>Equipaje</li>
+  </ul>
+
+  <p>Debes comprobar que todos los documentos sean válidos y que no lleven objetos prohibidos.</p>
+
+  <p>Si todo está correcto, permite el embarque.<br>Si encuentras algún problema, deniega la entrada.</p>
+
+  <p><strong>Recuerda: un error puede tener consecuencias. No queremos dejar pasar a chusma. El futuro del pais está en tus manos</strong></p>
+
+  <button onclick="empezarJuego()">Comenzar Juego</button>
+
 </div>
 
 <div id="pantallaJuego" style="display:none;"></div>
