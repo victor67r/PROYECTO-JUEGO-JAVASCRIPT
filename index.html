@@ -8,6 +8,35 @@
     <link rel="stylesheet" href="styles/juego.css">
 </head>
 <body>
-    <h1>holi</h1>
+    
+<div id="pantallaInicio">
+  <button id="botonEmpezar" onclick="mostrarInstrucciones()">Empezar Partida</button>
+  <button id="botonMusica" onclick="toggleMusica()">🔊</button>
+  <audio id="musicaFondo" src="musica/inicio/Level_One_Arrival.mp3" loop autoplay></audio>
+</div>
+
+<div id="pantallaInstrucciones" style="display:none;">
+  <h1 class="instruccion">BIENVENIDO OFICIAL</h1>
+
+  <p class="instruccion">Has sido asignado al control de embarque del aeropuerto internacional de Drakonia.</p>
+
+  <p class="instruccion">Tu trabajo es revisar cuidadosamente los documentos de los pasajeros antes de permitirles subir al avión.</p>
+
+  <p class="instruccion">Cada pasajero presentará:</p>
+  <ul class="instruccion">
+    <li>Pasaporte</li>
+    <li>Tarjeta de embarque</li>
+    <li>Equipaje</li>
+  </ul>
+
+  <p class="instruccion">Debes comprobar que todos los documentos sean válidos y que no lleven objetos prohibidos.</p>
+
+  <p class="instruccion">Si todo está correcto, permite el embarque.<br>Si encuentras algún problema, deniega la entrada.</p>
+
+  <p class="instruccion"><strong>Recuerda: un error puede tener consecuencias. No queremos dejar pasar a chusma. El futuro del país está en tus manos.</strong></p>
+
+  <button id="botonSiguiente" onclick="mostrarSiguienteFrase()">Siguiente</button>
+</div>
+
 </body>
 </html>
