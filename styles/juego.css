@@ -17,7 +17,7 @@ body, html {
   justify-content: center;  
 }
 
-#btnEmpezar {
+#botonEmpezar {
   padding: 20px 40px;
   font-size: 1.5rem;
   cursor: pointer;
@@ -28,6 +28,24 @@ body, html {
   transition: 0.3s;
 }
 
-#btnEmpezar:hover {
+#botonEmpezar:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+#botonMusica {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(0,0,0,0.6);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#botonMusica:hover {
   background-color: rgba(0,0,0,0.8);
 }

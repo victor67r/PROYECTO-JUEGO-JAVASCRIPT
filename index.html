@@ -10,12 +10,13 @@
 <body>
     
 <div id="pantallaInicio">
-    <button id="btnEmpezar" onclick="empezarJuego()">Empezar Partida</button>
-  </div>
+  <button id="botonEmpezar" onclick="empezarJuego()">Empezar Partida</button>
+  <button id="botonMusica" onclick="toggleMusica()">🔊</button>
 
-  <div id="pantallaJuego" style="display:none;">
+  <audio id="musicaFondo" src="assets/musica.mp3" loop autoplay></audio>
+</div>
 
-  </div>
+<div id="pantallaJuego" style="display:none;"></div>
 
 </body>
 </html>
