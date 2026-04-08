@@ -1,0 +1,15 @@
+#pantallaInicio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #000; 
+}
+
+#imagenInicio {
+  max-width: 80%;
+  height: auto;
+  margin-bottom: 20px;
+  border: 2px solid #fff; 
+}
