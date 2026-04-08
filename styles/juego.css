@@ -45,23 +45,27 @@ body, html {
   cursor: pointer;
 }
 
+.instruccion {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  max-width: 600px;
+  margin: 10px auto;
+  text-align: center;
+}
+
 #pantallaInstrucciones {
   display: flex;
   flex-direction: column;
-  justify-content: center; 
-  align-items: center;    
-
+  justify-content: center;
+  align-items: center;
   height: 100vh;
   width: 100vw;
-
   background-color: #111;
   color: white;
-
   padding: 40px;
   box-sizing: border-box;
-
-  text-align: center; 
 }
+
 
 #pantallaInstrucciones p {
   margin: 10px auto;   
