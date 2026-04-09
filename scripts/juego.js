@@ -1,9 +1,4 @@
 
-function empezarJuego() {
-  document.getElementById("pantallaInstrucciones").style.display = "none";
-  document.getElementById("pantallaJuego").style.display = "block";
-}
-
 //esto es para la musica
 function toggleMusica() {
   const musica = document.getElementById("musicaFondo");
