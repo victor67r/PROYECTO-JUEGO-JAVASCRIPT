@@ -55,3 +55,44 @@ function mostrarSiguienteFrase() {
     boton.onclick = empezarJuego;        
   }
 }
+
+//empezar el juego
+function empezarJuego(){
+  document.getElementById("pantallaInstrucciones").style.display = "none";
+  document.getElementById("Pasajero").style.display="block";
+  mostrarPasajero();
+}
+
+//mostramos los pasajeros
+let pasajeros = pasajerosJSON.txt; // como puedo cargar ahi el json?
+let pasajeroActual = 0;
+
+function mostrarPasajero(){
+  let p = pasajeros[pasajeroActual];
+  document.getElementById("nombre").innerHTML = "Nombre: "+p.nombre;
+  document.getElementById("pais").innerHTML = "Pais: "+p.pais;
+  document.getElementById("edad").innerHTML = "Edad: "+p.edad;
+
+}
+
+//pasar de pasajero
+function siguientePasajero(){
+  pasajeroActual++;
+  if (pasajeroActual<pasajeros.length){
+    mostrarPasajero();
+  }
+      else{
+        alert("No hay nadie en la cola")
+  }
+}
+
+//botones para aceptar o rechazar
+function aceptar(){
+  alert("Pasajero aceptado");
+  siguientePasajero();
+}
+
+function rechazar(){
+  alert("Pasajero rechazado");
+  siguientePasajero();
+}
