@@ -104,10 +104,17 @@ let pasajeroActual = 0;
 
 function mostrarPasajero(){
   let p = pasajeros[pasajeroActual];
+
+  //personajkes
   document.getElementById("nombre").innerHTML = "Nombre: "+p.nombre;
   document.getElementById("pais").innerHTML = "Pais: "+p.pais;
   document.getElementById("edad").innerHTML = "Edad: "+p.edad;
   document.getElementById("fotoPasajero").src = p.imagen;
+
+  //pasaportes
+  document.getElementById("pasaporteNombre").innerHTML = "Nombre: " + p.nombre;
+  document.getElementById("pasaportePais").innerHTML = "Pais: " + p.pais;
+  document.getElementById("pasaporteEdad").innerHTML = "Edad: " + p.edad;
 
 }
 
