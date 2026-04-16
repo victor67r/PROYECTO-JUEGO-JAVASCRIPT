@@ -70,7 +70,8 @@ let pasajeros = [  {
     "edad": 34,
     "pasaporte_valido": false,
     "tarjeta_embarque_valida": true,
-    "equipaje_prohibido": true
+    "equipaje_prohibido": true,
+    "imagen": "assets/personajes/Jacob_Hershel.png"
   },
   {
     "nombre": "Mohammed Abdul",
@@ -78,7 +79,8 @@ let pasajeros = [  {
     "edad": 28,
     "pasaporte_valido": false,
     "tarjeta_embarque_valida": false,
-    "equipaje_prohibido": true
+    "equipaje_prohibido": true,
+    "imagen": "assets/personajes/Mohammed_Abdul.png"
   },
   {
     "nombre": "Borja Blasco-Ibáñez de Álvarez",
@@ -86,7 +88,8 @@ let pasajeros = [  {
     "edad": 37,
     "pasaporte_valido": true,
     "tarjeta_embarque_valida": true,
-    "equipaje_prohibido": false
+    "equipaje_prohibido": false,
+    "imagen": "assets/personajes/Borja_BlascoIbanez_de_Alvarez.png"
   },
   {
     "nombre": "Guadalupe Bolivar Atahualpa",
@@ -94,7 +97,8 @@ let pasajeros = [  {
     "edad": 17,
     "pasaporte_valido": true,
     "tarjeta_embarque_valida": false,
-    "equipaje_prohibido": true
+    "equipaje_prohibido": true,
+    "imagen": "assets/personajes/Guadalupe_Bolivar_Atahualpa.png"
   }]
 let pasajeroActual = 0;
 
@@ -103,6 +107,7 @@ function mostrarPasajero(){
   document.getElementById("nombre").innerHTML = "Nombre: "+p.nombre;
   document.getElementById("pais").innerHTML = "Pais: "+p.pais;
   document.getElementById("edad").innerHTML = "Edad: "+p.edad;
+  document.getElementById("fotoPasajero").src = p.imagen;
 
 }
 
