@@ -105,6 +105,8 @@ let pasajeroActual = 0;
 function mostrarPasajero(){
   let p = pasajeros[pasajeroActual];
 
+  let pasaporte = generarPasaporte(p);
+
   //personajkes
   document.getElementById("nombre").innerHTML = "Nombre: "+p.nombre;
   document.getElementById("pais").innerHTML = "Pais: "+p.pais;
@@ -112,9 +114,9 @@ function mostrarPasajero(){
   document.getElementById("fotoPasajero").src = p.imagen;
 
   //pasaportes
-  document.getElementById("pasaporteNombre").innerHTML = "Nombre: " + p.nombre;
-  document.getElementById("pasaportePais").innerHTML = "Pais: " + p.pais;
-  document.getElementById("pasaporteEdad").innerHTML = "Edad: " + p.edad;
+  document.getElementById("pasaporteNombre").innerHTML = "Nombre: " + pasaporte.nombre;
+  document.getElementById("pasaportePais").innerHTML = "Pais: " + pasaporte.pais;
+  document.getElementById("pasaporteEdad").innerHTML = "Edad: " + pasaporte.edad;
 
 }
 
@@ -138,4 +140,27 @@ function aceptar(){
 function rechazar(){
   alert("Pasajero rechazado");
   siguientePasajero();
+}
+
+function generarPasaporte(p) {
+  let esFalso = Math.random() < 0.5 ;
+  let nombrePasaporte;
+  let paisPasaporte;
+  let edadPasaporte;
+
+  if (esFalso) {
+    nombrePasaporte = "???"+p.nombre;
+    paisPasaporte = "Desconocido";
+    edadPasaporte = p.edad + 5;
+  }
+  else {
+    nombrePasaporte=p.nombre;
+    paisPasaporte=p.pais;
+    edadPasaporte=p.edad;
+  }
+  return{
+    nombre: nombrePasaporte,
+    pais: paisPasaporte,
+    edad: edadPasaporte
+  }
 }
