@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body, html {
   margin: 0;
   padding: 0;
@@ -104,4 +110,59 @@ body, html {
   height: 100vh;
   width: 100vw;
   background-color: #222;
+}
+
+#Pasajero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; 
+  background: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+  
+}
+
+#fotoPasajero {
+  width: 250px;     
+  height: auto;
+  border-radius: 10px;
+
+  border: 3px solid white;
+  margin-bottom: 20px;
+
+  box-shadow: 0 0 15px rgba(255,255,255,0.2);
+}
+
+
+#Pasajero p {
+  margin: 5px;
+  font-size: 18px;
+}
+
+#Pasajero button {
+  margin: 10px;
+  padding: 10px 20px;
+
+  font-size: 16px;
+  cursor: pointer;
+
+  border: none;
+  border-radius: 5px;
+}
+
+
+#Pasajero button:first-of-type {
+  background-color: #2ecc71;
+  color: white;
+}
+
+#Pasajero button:last-of-type {
+  background-color: #e74c3c;
+  color: white;
+}
+
+#Pasajero button:hover {
+  opacity: 0.8;
 }
