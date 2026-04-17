@@ -149,7 +149,7 @@ function generarPasaporte(p) {
   let edadPasaporte;
 
   if (esFalso) {
-    nombrePasaporte = "???"+p.nombre;
+    nombrePasaporte = "??? "+p.nombre;
     paisPasaporte = "Desconocido";
     edadPasaporte = p.edad + 5;
   }
