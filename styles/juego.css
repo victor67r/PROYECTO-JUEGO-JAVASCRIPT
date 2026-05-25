@@ -122,77 +122,48 @@ body,html{
 
 
 #botonSiguiente{
-
   margin-top:30px;
-
   padding:15px 30px;
-
   font-size:20px;
-
   background:#2ecc71;
-
   border:none;
   border-radius:8px;
-
   cursor:pointer;
 }
 
 
-/* JUEGO */
-
 #pantallaJuego{
-
   display:flex;
   flex-direction:column;
-
   height:100vh;
-
   background:#161616;
-
   color:white;
 }
 
-
-/* HUD */
-
 #hud{
-
   height:70px;
-
   background:#0d0d0d;
-
   border-bottom:2px solid #333;
-
   display:flex;
   align-items:center;
-
   gap:30px;
-
   padding:0 20px;
 }
 
 
 .hudCaja{
-
   display:flex;
   flex-direction:column;
-
   align-items:center;
 }
 
-
 .hudCaja span{
-
   font-size:12px;
-
   color:#888;
 }
-
 .hudCaja strong{
   font-size:22px;
 }
-
-
 
 #mesa{
   flex:1;
@@ -205,7 +176,6 @@ body,html{
 
 
 #zonaPasajero{
-
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -213,7 +183,6 @@ body,html{
 
 
 #fotoPasajero{
-
   width:250px;
   border-radius:10px;
   border:3px solid white;
@@ -223,16 +192,13 @@ body,html{
 
 
 #datosPasajero p{
-
   margin:8px 0;
   font-size:18px;
 }
 
 
-/* DOCUMENTOS */
 
 #zonaDocumentos{
-
   background:#e7d7b1;
   color:black;
   padding:25px;
@@ -241,11 +207,9 @@ body,html{
   box-shadow:0 0 20px rgba(0,0,0,0.5);
 }
 
-
 #tabs{
   margin-bottom:20px;
 }
-
 
 #tabs button{
   padding:10px 20px;
@@ -266,7 +230,6 @@ body,html{
   font-family:"Courier New", monospace;
 }
 
-
 #acciones{
   height:80px;
   display:flex;
@@ -274,7 +237,6 @@ body,html{
 
 
 #acciones button{
-
   flex:1;
   border:none;
   font-size:22px;
@@ -282,12 +244,10 @@ body,html{
   cursor:pointer;
 }
 
-
 #botonAceptar{
   background:#1e7e34;
   color:white;
 }
-
 
 #botonRechazar{
   background:#b02a37;
@@ -296,33 +256,21 @@ body,html{
 
 
 #acciones button:hover{
-
   opacity:0.9;
 }
 
 
-/* SELLO */
-
 #sello{
 
   position:fixed;
-
   top:50%;
   left:50%;
-
   transform:translate(-50%, -50%) rotate(-15deg);
-
   padding:20px 40px;
-
   border:8px solid;
-
   font-size:60px;
-
   font-weight:bold;
-
   background:rgba(0,0,0,0.7);
-
   z-index:999;
-
   pointer-events:none;
 }
