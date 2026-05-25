@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Control de Aduanas — Juego de gestión aeroportuaria estilo Papers Please">
+    <title>Control de Aduanas — Aeropuerto Internacional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/documentos.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PANTALLA: MENÚ PRINCIPAL
+═══════════════════════════════════════════════════════════ -->
+<div id="pantalla-menu" class="pantalla activa">
+    <div class="menu-container">
+        <div class="menu-header">
+            <div class="menu-logo">✈</div>
+            <h1>AEROPUERTO INTERNACIONAL</h1>
+            <h2>CONTROL DE FRONTERAS</h2>
+            <p class="menu-subtitulo">Ministerio de Admisión Aeroportuaria — Puesto Nº 7</p>
+        </div>
+        <div class="menu-botones">
+            <button id="btn-nueva-partida" onclick="iniciarNuevaPartida()">
+                <span class="btn-icon">📋</span> NUEVA PARTIDA
+            </button>
+            <button id="btn-cargar" onclick="cargarPartidaGuardada()" disabled>
+                <span class="btn-icon">💾</span> CONTINUAR PARTIDA
+            </button>
+            <button id="btn-creditos" onclick="mostrarCreditos()">
+                <span class="btn-icon">ℹ</span> CRÉDITOS
+            </button>
+        </div>
+        <div id="info-partida-guardada" class="info-save" style="display:none"></div>
+        <!-- FUTURO: <audio id="audio-menu" src="assets/audio/menu.mp3" loop></audio> -->
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PANTALLA: BOLETÍN DIARIO
+═══════════════════════════════════════════════════════════ -->
+<div id="pantalla-intro" class="pantalla">
+    <div class="boletin-container">
+        <div class="boletin-header">
+            <div class="boletin-sello">OFICIAL</div>
+            <h2>BOLETÍN OFICIAL DEL MINISTERIO</h2>
+            <h3>DÍA <span id="numero-dia">1</span> DE SERVICIO</h3>
+        </div>
+        <hr class="boletin-linea">
+        <div id="texto-boletin" class="boletin-texto">
+            <!-- Generado dinámicamente por dias.js → generarHTMLBoletin() -->
+        </div>
+        <hr class="boletin-linea">
+        <div class="boletin-firma">
+            <p>Director General de Seguridad Aeroportuaria</p>
+            <p class="firma-nombre">— Ministerio del Interior de Aerolandia —</p>
+        </div>
+        <button id="btn-empezar-turno" onclick="empezarTurno()">► COMENZAR TURNO</button>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PANTALLA: JUEGO PRINCIPAL
+═══════════════════════════════════════════════════════════ -->
+<div id="pantalla-juego" class="pantalla">
+
+    <!-- HUD Superior -->
+    <header id="hud">
+        <div class="hud-item">
+            <span class="hud-label">DÍA</span>
+            <span id="hud-dia" class="hud-valor">1</span>
+        </div>
+        <div class="hud-item">
+            <span class="hud-label">CRÉDITOS</span>
+            <span id="hud-puntuacion" class="hud-valor hud-dinero">0 €</span>
+        </div>
+        <div class="hud-item hud-timer-container">
+            <span class="hud-label">TIEMPO</span>
+            <span id="hud-timer" class="hud-valor hud-timer timer-normal">1:30</span>
+            <div id="barra-timer" class="barra-timer">
+                <div id="barra-timer-fill" class="barra-timer-fill"></div>
+            </div>
+        </div>
+        <div class="hud-item">
+            <span class="hud-label">AVISOS</span>
+            <div class="hud-penalizaciones">
+                <span id="pen-1" class="penalty-dot penalty-dot--vacio">⬤</span>
+                <span id="pen-2" class="penalty-dot penalty-dot--vacio">⬤</span>
+                <span id="pen-3" class="penalty-dot penalty-dot--vacio">⬤</span>
+            </div>
+        </div>
+        <div class="hud-item">
+            <span class="hud-label">ATENDIDOS</span>
+            <span id="hud-atendidos" class="hud-valor">0</span>
+        </div>
+        <button id="btn-guardar-salir" onclick="guardarYSalir()">💾 GUARDAR Y SALIR</button>
+    </header>
+
+    <!-- Mesa de trabajo -->
+    <main id="mesa-trabajo">
+
+        <!-- Zona izquierda: Figura del pasajero -->
+        <div id="zona-pasajero">
+            <div id="pasajero-figura">
+                <div id="pasajero-foto-container">
+                    <!--
+                        FUTURO CON FOTO REAL:
+                        Cuando un pasajero tenga foto en POOL_PASAJEROS,
+                        se mostrará el <img>. Si no, se muestra la silueta emoji.
+                    -->
+                    <img id="pasajero-foto" src="" alt="Pasajero" style="display:none">
+                    <div id="pasajero-silueta">👤</div>
+                </div>
+                <div id="pasajero-nombre-tag">
+                    <span id="pasajero-nombre-display">—</span>
+                </div>
+            </div>
+            <div id="cola-info">
+                <span class="cola-label">👥 COLA:</span>
+                <span id="contador-cola">∞</span>
+            </div>
+        </div>
+
+        <!-- Zona derecha: Documentos con pestañas -->
+        <div id="zona-documentos">
+            <div id="pestanas-docs">
+                <button class="pestana activa" id="tab-pasaporte"
+                        onclick="cambiarTab('pasaporte')">🛂 Pasaporte</button>
+                <button class="pestana" id="tab-tarjeta"
+                        onclick="cambiarTab('tarjeta')">🎫 T. Embarque</button>
+                <button class="pestana pestana--equipaje" id="tab-equipaje"
+                        onclick="abrirInspeccionEquipaje()">🧳 Equipaje</button>
+            </div>
+
+            <div id="documento-container">
+                <div id="doc-pasaporte" class="documento-panel activo">
+                    <!-- Renderizado por renderizarPasaporte() en ui.js -->
+                </div>
+                <div id="doc-tarjeta" class="documento-panel">
+                    <!-- Renderizado por renderizarTarjetaEmbarque() en ui.js -->
+                </div>
+            </div>
+
+            <!-- Overlay del sello APROBADO / DENEGADO -->
+            <div id="sello-overlay" class="sello-overlay" style="display:none">
+                <div id="sello-texto" class="sello-texto"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Botones de acción -->
+    <div id="acciones-agente">
+        <button id="btn-aprobar" onclick="procesarDecision(true)" class="btn-aprobar">
+            ✅ APROBAR
+        </button>
+        <button id="btn-denegar" onclick="procesarDecision(false)" class="btn-denegar">
+            ❌ DENEGAR
+        </button>
+    </div>
+
+    <!-- FUTURO: <audio id="audio-juego" src="assets/audio/game.mp3" loop></audio> -->
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MODAL: INSPECCIÓN DE EQUIPAJE (Point & Click)
+═══════════════════════════════════════════════════════════ -->
+<div id="modal-equipaje" class="modal-overlay" style="display:none">
+    <div class="modal-contenido equipaje-container">
+        <div class="equipaje-header">
+            <h3>🧳 INSPECCIÓN DE EQUIPAJE</h3>
+            <p class="equipaje-instruccion">
+                Haz clic en los objetos sospechosos para confiscarlos.
+                ¡Cuidado con los objetos legales!
+            </p>
+        </div>
+
+        <!--
+            ZONA DE LA MALETA
+            ═══════════════════════════════════════════════════════
+            FUTURO CON IMAGEN REAL DE MALETA:
+              1. Pon la imagen de fondo en 'assets/equipaje/maleta_fondo.png'
+              2. Sustituye el div.maleta-interior por:
+                    <div class="maleta-interior"
+                         style="background-image: url('assets/equipaje/maleta_fondo.png');
+                                position: relative; background-size: cover;">
+              3. Posiciona cada item-equipaje absolutamente sobre la imagen
+                 usando top/left en sus estilos.
+              4. Los items ilegales pueden ir semiocultos bajo otros items.
+            ═══════════════════════════════════════════════════════
+        -->
+        <div id="maleta-visual">
+            <div class="maleta-interior">
+                <div id="items-equipaje-grid">
+                    <!-- Generado dinámicamente por abrirInspeccionEquipaje() en ui.js -->
+                </div>
+            </div>
+        </div>
+
+        <div class="equipaje-stats">
+            <span>🚫 Confiscados: <strong id="count-confiscados">0/0</strong></span>
+            <span>⚠️ Errores legales: <strong id="count-errores-eq">0</strong></span>
+        </div>
+
+        <button class="btn-cerrar-equipaje" onclick="cerrarInspeccionEquipaje()">
+            🔒 CERRAR INSPECCIÓN
+        </button>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PANTALLA: FIN DE DÍA
+═══════════════════════════════════════════════════════════ -->
+<div id="pantalla-fin-dia" class="pantalla">
+    <div class="fin-dia-container">
+        <div class="fin-dia-icono">🌆</div>
+        <h2>FIN DEL TURNO</h2>
+        <h3>DÍA <span id="fin-dia-numero">1</span> COMPLETADO</h3>
+        <div class="fin-dia-stats">
+            <div class="stat-fila">
+                <span>Pasajeros atendidos</span>
+                <span id="fin-atendidos">0</span>
+            </div>
+            <div class="stat-fila stat-fila--buena">
+                <span>Decisiones correctas</span>
+                <span id="fin-aciertos">0</span>
+            </div>
+            <div class="stat-fila stat-fila--mala">
+                <span>Errores cometidos</span>
+                <span id="fin-errores">0</span>
+            </div>
+            <div class="stat-fila stat-fila--total">
+                <span>CRÉDITOS TOTALES</span>
+                <span id="fin-puntuacion">0 €</span>
+            </div>
+        </div>
+        <p class="fin-dia-mensaje">
+            La partida se ha guardado automáticamente.<br>
+            Mañana será otro día, agente.
+        </p>
+        <button onclick="irAlSiguienteDia()">► CONTINUAR AL DÍA SIGUIENTE</button>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PANTALLA: GAME OVER
+═══════════════════════════════════════════════════════════ -->
+<div id="pantalla-game-over" class="pantalla">
+    <div class="game-over-container">
+        <div class="game-over-sello">DESPEDIDO</div>
+        <h2>🚫 FIN DEL SERVICIO</h2>
+        <p id="game-over-razon" class="game-over-razon">
+            Has acumulado demasiadas penalizaciones.
+        </p>
+        <div class="game-over-stats">
+            <p>Llegaste hasta el Día <strong id="go-dia">1</strong></p>
+            <p>Créditos totales: <strong id="go-puntuacion">0</strong> €</p>
+        </div>
+        <button onclick="volverAlMenu()">↩ VOLVER AL MENÚ</button>
+    </div>
+</div>
+
+<!-- Scripts — orden de dependencias: estado → días → pasajeros → validación → timer → ui → main -->
+<script src="js/gameState.js"></script>
+<script src="js/dias.js"></script>
+<script src="js/pasajeros.js"></script>
+<script src="js/validacion.js"></script>
+<script src="js/timer.js"></script>
+<script src="js/ui.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

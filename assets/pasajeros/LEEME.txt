@@ -1,0 +1,10 @@
+Carpeta para las fotos de los pasajeros.
+
+Para añadir una foto:
+1. Guarda la imagen aquí con el formato: NN_nombre.png (ej: 01_carlos.png)
+2. Abre js/pasajeros.js y busca el pasajero en POOL_PASAJEROS
+3. Cambia: foto: null
+   Por:    foto: 'assets/pasajeros/01_carlos.png'
+
+Tamaño recomendado: 100 x 120 píxeles (ratio 5:6)
+Formatos: PNG, JPG o WebP

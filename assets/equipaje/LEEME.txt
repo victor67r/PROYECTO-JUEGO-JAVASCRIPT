@@ -1,0 +1,16 @@
+Carpeta para las imágenes de los items del equipaje.
+
+Para añadir imagen a un item:
+1. Guarda la imagen aquí (ej: cuchillo.png)
+2. Abre js/pasajeros.js y busca el item en ITEMS_EQUIPAJE
+3. Cambia: imagen: null
+   Por:    imagen: 'assets/equipaje/cuchillo.png'
+
+Para la imagen de fondo de la maleta abierta:
+1. Guarda la imagen como: maleta_fondo.png
+2. Abre index.html y busca el comentario "FUTURO CON IMAGEN REAL DE MALETA"
+3. Sigue las instrucciones del comentario en ui.js > abrirInspeccionEquipaje()
+
+Tamaño recomendado para items: 80 x 80 píxeles
+Maleta abierta: 600 x 300 píxeles (ajustar según diseño)
+Formatos: PNG (transparencia) o JPG

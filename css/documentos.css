@@ -1,0 +1,343 @@
+/*
+ * documentos.css — Estilos visuales de los documentos del juego
+ *
+ * Contiene los estilos específicos de:
+ *   1. Pasaporte (documento oficial del Reino de Aerolandia)
+ *   2. Tarjeta de Embarque (estilo aerolínea)
+ *
+ * El equipaje tiene sus estilos en index.css (sección Modal Equipaje).
+ */
+
+/* ============================================================
+   1. PASAPORTE
+   ============================================================ */
+
+.pasaporte-doc {
+    background: #f5f0e8;
+    color: #1a1a1a;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    border: 2px solid #8a7a60;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 4px 4px 20px rgba(0,0,0,0.4);
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    transition: box-shadow 0.2s;
+}
+.pasaporte-doc--expirado {
+    box-shadow: 0 0 0 3px rgba(183,28,28,0.6), 4px 4px 20px rgba(0,0,0,0.4);
+}
+
+/* Cabecera del pasaporte */
+.pasaporte-cabecera {
+    background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #1a237e 100%);
+    color: #e8eaf6;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+.pasaporte-escudo { font-size: 1.6rem; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5)); }
+.pasaporte-titulo-pais { text-align: center; flex: 1; }
+.pasaporte-pais {
+    font-size: 0.78rem;
+    font-weight: bold;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #ffd54f;
+}
+.pasaporte-subtipo {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    color: #c5cae9;
+    margin-top: 2px;
+}
+
+/* Cuerpo del pasaporte */
+.pasaporte-cuerpo {
+    display: flex;
+    gap: 0;
+    padding: 16px;
+    background: #f5f0e8;
+    border-bottom: 1px solid #c8b89a;
+}
+
+/* Área de foto */
+.pasaporte-foto-area {
+    width: 100px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-right: 16px;
+}
+.pasaporte-foto-placeholder {
+    width: 88px; height: 110px;
+    background: #e0d8cc;
+    border: 2px solid #a08060;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 56px;
+    color: #7a6a50;
+}
+.pasaporte-foto-img {
+    width: 88px; height: 110px;
+    object-fit: cover;
+    border: 2px solid #a08060;
+}
+.pasaporte-numero-doc {
+    font-size: 0.62rem;
+    letter-spacing: 0.05em;
+    color: #6a5a40;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Datos del pasajero */
+.pasaporte-datos-area { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.pasaporte-campo { display: flex; flex-direction: column; gap: 1px; }
+.pasaporte-fila { display: flex; gap: 16px; }
+.pasaporte-fila .pasaporte-campo { flex: 1; }
+.pasaporte-etiqueta {
+    font-size: 0.56rem;
+    letter-spacing: 0.15em;
+    color: #6a5a40;
+    text-transform: uppercase;
+}
+.pasaporte-valor {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #1a1a1a;
+    letter-spacing: 0.04em;
+}
+.valor--error {
+    color: #c62828 !important;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+    text-decoration-color: #c62828;
+}
+
+/* MRZ (Machine Readable Zone) */
+.pasaporte-mrz {
+    background: #ede5d8;
+    border-top: 1px solid #c8b89a;
+    padding: 8px 16px;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    letter-spacing: 0.06em;
+}
+.mrz-linea {
+    font-size: 0.65rem;
+    color: #3a3028;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+    line-height: 1.8;
+}
+
+/* Sello de caducado */
+.pasaporte-sello-caducado {
+    position: absolute;
+    top: 60px; right: 20px;
+    font-family: 'Special Elite', 'Courier New', monospace;
+    font-size: 1.4rem;
+    color: rgba(183,28,28,0.85);
+    border: 3px solid rgba(183,28,28,0.8);
+    padding: 4px 12px;
+    transform: rotate(18deg);
+    letter-spacing: 0.12em;
+    pointer-events: none;
+    text-shadow: 1px 1px 2px rgba(183,28,28,0.3);
+}
+
+/* ============================================================
+   2. TARJETA DE EMBARQUE
+   ============================================================ */
+
+.tarjeta-doc {
+    background: #f9f7f2;
+    color: #1a1a1a;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    border: 1px solid #c8bca8;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 3px 3px 16px rgba(0,0,0,0.3);
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+/* Header de aerolínea */
+.tarjeta-header {
+    background: linear-gradient(135deg, #0d47a1, #1565c0);
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.tarjeta-aerolinea {
+    font-weight: bold;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    color: #fff;
+}
+.tarjeta-titulo-doc {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: #bbdefb;
+}
+
+/* Cuerpo de la tarjeta */
+.tarjeta-cuerpo {
+    display: flex;
+    background: #f9f7f2;
+}
+
+/* Sección izquierda */
+.tarjeta-left {
+    flex: 1;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.tarjeta-campo { display: flex; flex-direction: column; gap: 2px; }
+.tarjeta-etiqueta {
+    font-size: 0.56rem;
+    letter-spacing: 0.14em;
+    color: #6a5a40;
+    text-transform: uppercase;
+}
+.tarjeta-valor {
+    font-size: 0.92rem;
+    font-weight: bold;
+    color: #1a1a1a;
+    letter-spacing: 0.04em;
+}
+
+/* Ruta */
+.tarjeta-ruta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.tarjeta-aeropuerto { text-align: center; }
+.tarjeta-iata {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #0d47a1;
+    letter-spacing: 0.04em;
+    line-height: 1;
+}
+.tarjeta-ciudad {
+    font-size: 0.66rem;
+    color: #5a4a30;
+    letter-spacing: 0.06em;
+}
+.tarjeta-flecha {
+    color: #0d47a1;
+    font-size: 1rem;
+    flex: 1;
+    text-align: center;
+    letter-spacing: -2px;
+}
+
+/* Detalles pequeños */
+.tarjeta-detalles {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.tarjeta-detalle-item { display: flex; flex-direction: column; gap: 2px; }
+
+/* Divisor con perforación */
+.tarjeta-divider {
+    width: 20px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    background: #f9f7f2;
+    position: relative;
+}
+.tarjeta-perforacion {
+    width: 2px;
+    background: repeating-linear-gradient(
+        to bottom,
+        #c8bca8 0px, #c8bca8 6px,
+        transparent 6px, transparent 10px
+    );
+    margin: 10px 0;
+}
+
+/* Stub (sección desprendible) */
+.tarjeta-stub {
+    width: 130px;
+    flex-shrink: 0;
+    padding: 16px 12px;
+    background: #f0ece2;
+    border-left: 1px dashed #c8bca8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+.stub-asiento-label {
+    font-size: 0.56rem;
+    letter-spacing: 0.16em;
+    color: #6a5a40;
+    text-transform: uppercase;
+}
+.stub-asiento {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #0d47a1;
+    line-height: 1;
+    letter-spacing: 0.04em;
+}
+.stub-vuelo {
+    font-size: 0.72rem;
+    color: #5a4a30;
+    letter-spacing: 0.08em;
+}
+.stub-barcode {
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+.barcode-barras {
+    display: flex;
+    align-items: flex-end;
+    height: 36px;
+    gap: 1px;
+}
+.barcode-barra {
+    background: #1a1a1a;
+    height: 100%;
+    display: inline-block;
+}
+.barcode-numero {
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    color: #5a4a30;
+}
+
+/* Alerta de nombre no coincide */
+.tarjeta-alerta {
+    background: #b71c1c;
+    color: white;
+    font-size: 0.78rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 6px 20px;
+    text-align: center;
+    animation: parpadeoAlerta 1s ease infinite;
+}
+@keyframes parpadeoAlerta {
+    0%,100% { background: #b71c1c; }
+    50%      { background: #d32f2f; }
+}
