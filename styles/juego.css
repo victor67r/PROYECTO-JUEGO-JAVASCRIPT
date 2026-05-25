@@ -11,17 +11,13 @@ body,html{
 }
 
 
-/* PANTALLA INICIO */
-
 #pantallaInicio{
 
   width:100vw;
   height:100vh;
-
   background-image:url("../assets/portada/portada33.png");
   background-size:cover;
   background-position:center;
-
   display:flex;
   justify-content:center;
   align-items:center;
@@ -29,97 +25,64 @@ body,html{
 
 
 #botonEmpezar{
-
   padding:20px 40px;
-
   font-size:24px;
-
   background:rgba(0,0,0,0.7);
-
   color:white;
-
   border:none;
   border-radius:10px;
-
   cursor:pointer;
 }
-
 
 #botonEmpezar:hover{
   background:rgba(0,0,0,0.9);
 }
 
-
 #botonMusica{
-
   position:absolute;
-
   bottom:20px;
   right:20px;
-
   padding:10px 15px;
-
   font-size:22px;
-
   background:rgba(0,0,0,0.7);
-
   color:white;
-
   border:none;
   border-radius:8px;
-
   cursor:pointer;
 }
 
-
-/* INSTRUCCIONES */
 
 #pantallaInstrucciones{
 
   width:100vw;
   height:100vh;
-
   background:#111;
-
   color:white;
-
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-
   padding:40px;
 }
 
 
 .instruccion{
-
   opacity:0;
-
   transition:0.5s;
-
   max-width:700px;
-
   margin:10px auto;
-
   text-align:center;
 }
-
 
 #pantallaInstrucciones p{
   font-size:18px;
 }
 
-
 #pantallaInstrucciones li{
-
   margin:10px 0;
-
   list-style:none;
-
   font-size:20px;
 }
-
 
 #botonSiguiente{
   margin-top:30px;
@@ -130,7 +93,6 @@ body,html{
   border-radius:8px;
   cursor:pointer;
 }
-
 
 #pantallaJuego{
   display:flex;
