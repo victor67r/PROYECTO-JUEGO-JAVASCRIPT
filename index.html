@@ -1,60 +1,167 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JUEGO</title>
+    <title>Control de Embarque</title>
+
     <script src="scripts/juego.js" defer></script>
+
     <link rel="stylesheet" href="styles/juego.css">
 </head>
+
 <body>
-    
+
+<!-- PANTALLA INICIO -->
+
 <div id="pantallaInicio">
-  <button id="botonEmpezar" onclick="mostrarInstrucciones()">Empezar Partida</button>
-  <button id="botonMusica" onclick="toggleMusica()">🔊</button>
-  <audio id="musicaFondo" src="musica/inicio/Level_One_Arrival.mp3" loop autoplay></audio>
+
+    <button id="botonEmpezar" onclick="mostrarInstrucciones()">
+        Empezar Partida
+    </button>
+
+    <button id="botonMusica" onclick="toggleMusica()">
+        🔊
+    </button>
+
+    <audio id="musicaFondo"
+           src="musica/inicio/Level_One_Arrival.mp3"
+           loop
+           autoplay>
+    </audio>
+
 </div>
+
+<!-- PANTALLA INSTRUCCIONES -->
 
 <div id="pantallaInstrucciones" style="display:none;">
-  <h1 class="instruccion">BIENVENIDO, OFICIAL</h1>
 
-  <p class="instruccion">Has sido asignado al control de embarque del aeropuerto internacional de Sanchonia.</p>
+    <h1 class="instruccion">BIENVENIDO, OFICIAL</h1>
 
-  <p class="instruccion">Tu trabajo es revisar cuidadosamente los documentos de los pasajeros antes de permitirles subir al avión.</p>
+    <p class="instruccion">
+        Has sido asignado al control de embarque del aeropuerto internacional de Sanchonia.
+    </p>
 
-  <p class="instruccion">Cada pasajero presentará:</p>
-  <ul class="instruccion">
-    <li>Pasaporte</li>
-    <li>Tarjeta de embarque</li>
-    <li>Equipaje</li>
-  </ul>
+    <p class="instruccion">
+        Tu trabajo es revisar cuidadosamente los documentos de los pasajeros.
+    </p>
 
-  <p class="instruccion">Debes comprobar que todos los documentos sean válidos y que no lleven objetos prohibidos.</p>
+    <p class="instruccion">
+        Cada pasajero presentará:
+    </p>
 
-  <p class="instruccion">Si todo está correcto, permite el embarque.<br>Si encuentras algún problema, deniega la entrada.</p>
+    <ul class="instruccion">
+        <li>Pasaporte</li>
+        <li>Tarjeta de embarque</li>
+        <li>Equipaje</li>
+    </ul>
 
-  <p class="instruccion"><strong>Recuerda: un error puede tener consecuencias. No queremos dejar pasar a chusma. El futuro del país está en tus manos.</strong></p>
+    <p class="instruccion">
+        Si todo está correcto, permite el embarque.
+    </p>
 
-  <button id="botonSiguiente" onclick="mostrarSiguienteFrase()">Siguiente</button>
+    <p class="instruccion">
+        Si encuentras algún problema, deniega la entrada.
+    </p>
+
+    <p class="instruccion">
+        <strong>
+            Un error puede tener consecuencias.
+        </strong>
+    </p>
+
+    <button id="botonSiguiente" onclick="mostrarSiguienteFrase()">
+        Siguiente
+    </button>
+
 </div>
 
-<div id="Pasajero" style="display:none;">
-  <h2>Pasajero</h2>
-  <img id="fotoPasajero" width="150">
-  <p id="nombre"></p>
-  <p id="pais"></p>
-  <p id="edad"></p>
+<!-- PANTALLA JUEGO -->
 
-  <div id="pasaporte">
-    <h3>PASAPORTE</h3>
-    <p id="pasaporteNombre"></p>
-    <p id="pasaportePais"></p>
-    <p id="pasaporteEdad"></p>
-  </div>
+<div id="pantallaJuego" style="display:none;">
 
+    <!-- HUD -->
 
-  <button onclick="aceptar()">Aceptar</button>
-  <button onclick="rechazar()">Rechazar</button>
+    <header id="hud">
+
+        <div class="hudCaja">
+            <span>DÍA</span>
+            <strong>1</strong>
+        </div>
+
+        <div class="hudCaja">
+            <span>COLA</span>
+            <strong id="contadorCola">0</strong>
+        </div>
+
+        <div class="hudCaja">
+            <span>ERRORES</span>
+            <strong id="errores">0</strong>
+        </div>
+
+    </header>
+
+    <!-- MESA -->
+
+    <main id="mesa">
+
+        <!-- PASAJERO -->
+
+        <div id="zonaPasajero">
+
+            <h2>Pasajero</h2>
+
+            <img id="fotoPasajero">
+
+            <div id="datosPasajero">
+                <p id="nombre"></p>
+                <p id="pais"></p>
+                <p id="edad"></p>
+            </div>
+
+        </div>
+
+        <!-- DOCUMENTOS -->
+
+        <div id="zonaDocumentos">
+
+            <div id="tabs">
+                <button class="tabActiva">Pasaporte</button>
+            </div>
+
+            <div id="pasaporte">
+
+                <h3>PASAPORTE</h3>
+
+                <p id="pasaporteNombre"></p>
+                <p id="pasaportePais"></p>
+                <p id="pasaporteEdad"></p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- BOTONES -->
+
+    <div id="acciones">
+
+        <button id="botonAceptar" onclick="aceptar()">
+            ACEPTAR
+        </button>
+
+        <button id="botonRechazar" onclick="rechazar()">
+            RECHAZAR
+        </button>
+
+    </div>
+
+    <!-- SELLO -->
+
+    <div id="sello" style="display:none;"></div>
+
 </div>
+
 </body>
 </html>
