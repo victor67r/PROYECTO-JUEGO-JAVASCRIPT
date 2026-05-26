@@ -214,15 +214,69 @@ function mostrarPasajero() {
 
 function generarPasaporte(p) {
 
-  let falso = Math.random() < 0.5;
+  // 🔥 35% de probabilidad de que sea falso
+  let falso = Math.random() < 0.35;
 
   if (falso) {
+
+    let nombresFalsos = [
+      "Luis Mendoza",
+      "Carlos Ruiz",
+      "John Smith",
+      "Ivan Petrov",
+      "Ali Hassan"
+    ];
+
+    let nombreFinal = p.nombre;
+    let edadFinal = p.edad;
+
+    // 🔥 Tipo de error aleatorio
+    let tipoFallo = Math.floor(Math.random() * 3);
+
+    // =========================
+    // NOMBRE FALSO
+    // =========================
+    if (tipoFallo === 0) {
+
+      nombreFinal =
+        nombresFalsos[
+          Math.floor(Math.random() * nombresFalsos.length)
+        ];
+    }
+
+    // =========================
+    // EDAD FALSA
+    // =========================
+    else if (tipoFallo === 1) {
+
+      edadFinal =
+        p.edad + Math.floor(Math.random() * 8) + 1;
+    }
+
+    // =========================
+    // AMBOS FALSOS
+    // =========================
+    else {
+
+      nombreFinal =
+        nombresFalsos[
+          Math.floor(Math.random() * nombresFalsos.length)
+        ];
+
+      edadFinal =
+        p.edad + Math.floor(Math.random() * 8) + 1;
+    }
+
     return {
-      nombre: "Luis Mendoza",
+      nombre: nombreFinal,
       pais: p.pais,
-      edad: p.edad + 2
+      edad: edadFinal
     };
   }
+
+  // =========================
+  // PASAPORTE REAL
+  // =========================
 
   return {
     nombre: p.nombre,
