@@ -23,44 +23,32 @@ function toggleMusica() {
 let indiceFrase = 0;
 
 function mostrarInstrucciones() {
-
   document.getElementById("pantallaInicio").style.display = "none";
-
   let pantalla = document.getElementById("pantallaInstrucciones");
-
   pantalla.style.display = "flex";
-
   let frases = document.getElementsByClassName("instruccion");
-
   for (let i = 0; i < frases.length; i++) {
     frases[i].style.opacity = 0;
   }
-
   mostrarSiguienteFrase();
 }
 
 
 function mostrarSiguienteFrase() {
-
   let frases = document.getElementsByClassName("instruccion");
-
   if (indiceFrase > 0) {
     frases[indiceFrase - 1].style.opacity = 1;
   }
 
   if (indiceFrase < frases.length) {
-
     frases[indiceFrase].style.opacity = 1;
-
     indiceFrase++;
   }
 
   else {
 
     let boton = document.getElementById("botonSiguiente");
-
     boton.innerHTML = "Comenzar Juego";
-
     boton.onclick = empezarJuego;
   }
 }
@@ -69,11 +57,8 @@ function mostrarSiguienteFrase() {
 // EMPEZAR JUEGO
 
 function empezarJuego() {
-
   document.getElementById("pantallaInstrucciones").style.display = "none";
-
   document.getElementById("pantallaJuego").style.display = "flex";
-
   mostrarPasajero();
 }
 
@@ -81,7 +66,6 @@ function empezarJuego() {
 // PASAJEROS
 
 let pasajeros = [
-
   {
     nombre: "Jacob Hershel",
     pais: "Israel",
@@ -113,43 +97,31 @@ let pasajeros = [
 ];
 
 let pasajeroActual = 0;
-
 let errores = 0;
-
 
 // MOSTRAR PASAJERO
 
 function mostrarPasajero() {
-
   let p = pasajeros[pasajeroActual];
-
   let pasaporte = generarPasaporte(p);
-
   document.getElementById("nombre").innerHTML =
     "Nombre: " + p.nombre;
-
   document.getElementById("pais").innerHTML =
     "País: " + p.pais;
-
   document.getElementById("edad").innerHTML =
     "Edad: " + p.edad;
-
   document.getElementById("fotoPasajero").src =
     p.imagen;
 
-
   document.getElementById("pasaporteNombre").innerHTML =
     "Nombre: " + pasaporte.nombre;
-
   document.getElementById("pasaportePais").innerHTML =
     "País: " + pasaporte.pais;
-
   document.getElementById("pasaporteEdad").innerHTML =
     "Edad: " + pasaporte.edad;
 
   actualizarCola();
 }
-
 
 // PASAPORTE
 
