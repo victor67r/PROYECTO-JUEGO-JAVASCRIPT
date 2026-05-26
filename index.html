@@ -10,21 +10,24 @@
 </head>
 <body>
 
+<!-- PANTALLA INICIO -->
 <div id="pantallaInicio">
 
   <button id="botonEmpezar" onclick="mostrarModalUsuario()">
     Empezar Partida
   </button>
 
-  <button id="botonMusica" onclick="toggleMusica()">🔊</button>
-
-  <button id="botonRanking" onclick="toggleRanking()">
-    🏆 RANKING
+  <!-- 🆕 BOTÓN RANKING INICIO -->
+  <button id="botonRankingInicio" onclick="toggleRankingInicio()">
+    🏆 VER RANKING
   </button>
 
-  <div id="rankingInicio" style="display:none;">
-    <ul id="listaRanking"></ul>
+  <!-- 🆕 PANEL RANKING INICIO -->
+  <div id="rankingInicioPantalla" style="display:none;">
+    <ul id="listaRankingInicio"></ul>
   </div>
+
+  <button id="botonMusica" onclick="toggleMusica()">🔊</button>
 
   <audio id="musicaFondo"
          src="musica/inicio/Level_One_Arrival.mp3"
@@ -34,24 +37,28 @@
 
 </div>
 
+<!-- MODAL USUARIO -->
 <div id="modalUsuario" style="display:none;">
   <div class="modal-contenido">
 
     <h2>IDENTIFICACIÓN DEL AGENTE</h2>
 
-    <input type="text" id="inputUsuario" placeholder="Introduce tu nombre" maxlength="15">
+    <input type="text" id="inputUsuario" maxlength="15" placeholder="Introduce tu nombre">
 
     <button onclick="guardarUsuario()">Continuar</button>
 
   </div>
 </div>
 
+<!-- INSTRUCCIONES -->
 <div id="pantallaInstrucciones" style="display:none;">
 
   <h1 class="instruccion">BIENVENIDO, OFICIAL</h1>
 
   <p class="instruccion">Has sido asignado al control de embarque del aeropuerto internacional de Sanchonia.</p>
+
   <p class="instruccion">Tu trabajo es revisar cuidadosamente los documentos de los pasajeros.</p>
+
   <p class="instruccion">Cada pasajero presentará:</p>
 
   <ul class="instruccion">
@@ -60,14 +67,18 @@
   </ul>
 
   <p class="instruccion">Comprueba que todos los datos coincidan.</p>
+
   <p class="instruccion">Si algo es sospechoso, deniega el acceso.</p>
 
   <p class="instruccion"><strong>El futuro del país está en tus manos.</strong></p>
 
-  <button id="botonSiguiente" onclick="mostrarSiguienteFrase()">Siguiente</button>
+  <button id="botonSiguiente" onclick="mostrarSiguienteFrase()">
+    Siguiente
+  </button>
 
 </div>
 
+<!-- JUEGO -->
 <div id="Pasajero" style="display:none;">
 
   <div id="hudSuperior">

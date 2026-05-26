@@ -16,36 +16,48 @@ function toggleMusica() {
 }
 
 // ============================
-// RANKING
+// RANKING INICIO (NUEVO)
 // ============================
 
-let rankingVisible = false;
+let rankingInicioVisible = false;
 
-function toggleRanking() {
-  let contenedor = document.getElementById("rankingInicio");
-  rankingVisible = !rankingVisible;
+function toggleRankingInicio() {
 
-  if (rankingVisible) {
+  let contenedor = document.getElementById("rankingInicioPantalla");
+
+  rankingInicioVisible = !rankingInicioVisible;
+
+  if (rankingInicioVisible) {
     contenedor.style.display = "block";
-    cargarRankingInicio();
+    cargarRankingPantallaInicio();
   } else {
     contenedor.style.display = "none";
   }
 }
 
-function cargarRankingInicio() {
-  let ranking = JSON.parse(localStorage.getItem("ranking")) || [];
-  let lista = document.getElementById("listaRanking");
+function cargarRankingPantallaInicio() {
+
+  let ranking =
+    JSON.parse(localStorage.getItem("ranking")) || [];
+
+  let lista = document.getElementById("listaRankingInicio");
 
   lista.innerHTML = "";
 
   ranking.sort((a, b) => b.puntos - a.puntos);
 
-  for (let i = 0; i < Math.min(5, ranking.length); i++) {
+  if (ranking.length === 0) {
     let li = document.createElement("li");
-    li.textContent = ranking[i].usuario + " - " + ranking[i].puntos + " pts";
+    li.textContent = "No hay partidas guardadas";
     lista.appendChild(li);
+    return;
   }
+
+  ranking.forEach(j => {
+    let li = document.createElement("li");
+    li.textContent = `${j.usuario} - ${j.puntos} pts`;
+    lista.appendChild(li);
+  });
 }
 
 // ============================
@@ -60,14 +72,13 @@ function mostrarModalUsuario() {
 }
 
 function guardarUsuario() {
+
   let input = document.getElementById("inputUsuario").value.trim();
 
-  if (input === "") {
-    alert("Introduce un nombre");
-    return;
-  }
+  if (!input) return alert("Introduce un nombre");
 
   nombreUsuario = input;
+
   document.getElementById("hudUsuario").innerHTML = nombreUsuario;
 
   document.getElementById("modalUsuario").style.display = "none";
@@ -98,6 +109,7 @@ function mostrarInstrucciones() {
 }
 
 function mostrarSiguienteFrase() {
+
   let frases = document.getElementsByClassName("instruccion");
 
   if (indiceFrase < frases.length) {
@@ -111,7 +123,7 @@ function mostrarSiguienteFrase() {
 }
 
 // ============================
-// EMPEZAR
+// EMPEZAR JUEGO
 // ============================
 
 function empezarJuego() {
@@ -121,7 +133,7 @@ function empezarJuego() {
 }
 
 // ============================
-// PASAJEROS
+// PASAJEROS + FOTOS ALEATORIAS
 // ============================
 
 let pasajeros = [
@@ -134,19 +146,21 @@ let pasajeros = [
   { nombre: "Karen Smith", pais: "USA", edad: 27, imagen: "assets/personajes/trans_eunte.png" }
 ];
 
-let pasajeroActual = 0;
-
-// 🔥 NUEVAS FOTOS ALEATORIAS
 let fotosAleatorias = [
-  "assets/pasaporte/opcion1.png",
-  "assets/pasaporte/opcion2.png",
+  "assets/fotos_extra/foto1.png",
+  "assets/fotos_extra/foto2.png",
+  "assets/fotos_extra/foto3.png",
+  "assets/fotos_extra/foto4.png"
 ];
+
+let pasajeroActual = 0;
 
 // ============================
 // MOSTRAR PASAJERO
 // ============================
 
 function mostrarPasajero() {
+
   let p = pasajeros[pasajeroActual];
 
   let pasaporte = generarPasaporte(p);
@@ -179,11 +193,8 @@ function generarPasaporte(p) {
 
   let fotoFinal = p.imagen;
 
-  // 20% foto aleatoria
   if (Math.random() < 0.2) {
-    fotoFinal = fotosAleatorias[
-      Math.floor(Math.random() * fotosAleatorias.length)
-    ];
+    fotoFinal = fotosAleatorias[Math.floor(Math.random() * fotosAleatorias.length)];
   }
 
   let nombreFinal = p.nombre;
@@ -218,6 +229,7 @@ function generarPasaporte(p) {
 // ============================
 
 function generarTarjeta(p) {
+
   let vuelos = ["IB203", "FR221", "JK881", "AX009"];
   let asientos = ["12A", "7C", "21F", "3B"];
 
@@ -233,6 +245,7 @@ function generarTarjeta(p) {
 // ============================
 
 function mostrarDocumento(tipo) {
+
   let docs = document.querySelectorAll(".documento");
   let tabs = document.querySelectorAll(".tab");
 
@@ -253,6 +266,7 @@ function mostrarDocumento(tipo) {
 // ============================
 
 function siguientePasajero() {
+
   pasajeroActual++;
 
   if (pasajeroActual < pasajeros.length) {
@@ -271,7 +285,6 @@ function aceptar() {
   puntuacion += 10;
   actualizarPuntuacion();
   mostrarSello("APROBADO");
-
   setTimeout(siguientePasajero, 1000);
 }
 
@@ -279,7 +292,6 @@ function rechazar() {
   puntuacion -= 5;
   actualizarPuntuacion();
   mostrarSello("DENEGADO");
-
   setTimeout(siguientePasajero, 1000);
 }
 
@@ -292,6 +304,7 @@ function actualizarPuntuacion() {
 }
 
 function guardarRanking() {
+
   let ranking = JSON.parse(localStorage.getItem("ranking")) || [];
 
   ranking.push({
@@ -307,6 +320,7 @@ function guardarRanking() {
 // ============================
 
 function mostrarSello(texto) {
+
   let sello = document.getElementById("selloResultado");
 
   sello.innerHTML = texto;
