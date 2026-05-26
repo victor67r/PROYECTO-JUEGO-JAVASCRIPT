@@ -10,7 +10,6 @@
 </head>
 <body>
 
-<!-- PANTALLA INICIO -->
 <div id="pantallaInicio">
 
   <button id="botonEmpezar" onclick="mostrarModalUsuario()">
@@ -19,12 +18,10 @@
 
   <button id="botonMusica" onclick="toggleMusica()">🔊</button>
 
-  <!-- BOTÓN RANKING -->
   <button id="botonRanking" onclick="toggleRanking()">
     🏆 RANKING
   </button>
 
-  <!-- PANEL RANKING -->
   <div id="rankingInicio" style="display:none;">
     <ul id="listaRanking"></ul>
   </div>
@@ -37,39 +34,24 @@
 
 </div>
 
-<!-- MODAL USUARIO -->
 <div id="modalUsuario" style="display:none;">
   <div class="modal-contenido">
 
     <h2>IDENTIFICACIÓN DEL AGENTE</h2>
 
-    <input
-      type="text"
-      id="inputUsuario"
-      placeholder="Introduce tu nombre"
-      maxlength="15"
-    >
+    <input type="text" id="inputUsuario" placeholder="Introduce tu nombre" maxlength="15">
 
     <button onclick="guardarUsuario()">Continuar</button>
 
   </div>
 </div>
 
-<!-- INSTRUCCIONES -->
 <div id="pantallaInstrucciones" style="display:none;">
 
   <h1 class="instruccion">BIENVENIDO, OFICIAL</h1>
 
-  <p class="instruccion">
-    Has sido asignado al control de embarque
-    del aeropuerto internacional de Sanchonia.
-  </p>
-
-  <p class="instruccion">
-    Tu trabajo es revisar cuidadosamente
-    los documentos de los pasajeros.
-  </p>
-
+  <p class="instruccion">Has sido asignado al control de embarque del aeropuerto internacional de Sanchonia.</p>
+  <p class="instruccion">Tu trabajo es revisar cuidadosamente los documentos de los pasajeros.</p>
   <p class="instruccion">Cada pasajero presentará:</p>
 
   <ul class="instruccion">
@@ -77,31 +59,17 @@
     <li>Tarjeta de embarque</li>
   </ul>
 
-  <p class="instruccion">
-    Comprueba que todos los datos coincidan.
-  </p>
+  <p class="instruccion">Comprueba que todos los datos coincidan.</p>
+  <p class="instruccion">Si algo es sospechoso, deniega el acceso.</p>
 
-  <p class="instruccion">
-    Si algo es sospechoso, deniega el acceso.
-  </p>
+  <p class="instruccion"><strong>El futuro del país está en tus manos.</strong></p>
 
-  <p class="instruccion">
-    <strong>
-      El futuro del país está en tus manos.
-    </strong>
-  </p>
-
-  <button id="botonSiguiente"
-          onclick="mostrarSiguienteFrase()">
-    Siguiente
-  </button>
+  <button id="botonSiguiente" onclick="mostrarSiguienteFrase()">Siguiente</button>
 
 </div>
 
-<!-- JUEGO -->
 <div id="Pasajero" style="display:none;">
 
-  <!-- HUD -->
   <div id="hudSuperior">
 
     <div class="hudCaja">
@@ -116,7 +84,6 @@
 
   </div>
 
-  <!-- PERSONA -->
   <div id="zonaPersona">
 
     <h2>Pasajero</h2>
@@ -131,38 +98,26 @@
 
   </div>
 
-  <!-- DOCUMENTOS -->
   <div id="zonaDocumentos">
 
-    <!-- PESTAÑAS -->
     <div id="tabsDocumentos">
 
-      <button
-        class="tab activa"
-        onclick="mostrarDocumento('pasaporte')">
+      <button class="tab activa" onclick="mostrarDocumento('pasaporte')">
         PASAPORTE
       </button>
 
-      <button
-        class="tab"
-        onclick="mostrarDocumento('tarjeta')">
+      <button class="tab" onclick="mostrarDocumento('tarjeta')">
         TARJETA
       </button>
 
     </div>
 
-    <!-- CONTENIDO -->
     <div id="contenedorDocumentos">
 
-      <!-- PASAPORTE -->
-      <div id="pasaporte"
-           class="documento activo">
+      <div id="pasaporte" class="documento activo">
 
-        <div class="documentoHeader">
-          REPÚBLICA DE SANCHONIA
-        </div>
+        <div class="documentoHeader">REPÚBLICA DE SANCHONIA</div>
 
-        <!-- FOTO -->
         <img id="fotoPasaporte" class="fotoDocumento">
 
         <div class="documentoContenido">
@@ -173,13 +128,9 @@
 
       </div>
 
-      <!-- TARJETA -->
-      <div id="tarjeta"
-           class="documento">
+      <div id="tarjeta" class="documento">
 
-        <div class="documentoHeader">
-          TARJETA DE EMBARQUE
-        </div>
+        <div class="documentoHeader">TARJETA DE EMBARQUE</div>
 
         <div class="documentoContenido">
           <p id="tarjetaNombre"></p>
@@ -193,22 +144,13 @@
 
   </div>
 
-  <!-- BOTONES -->
   <div id="botonesDecision">
 
-    <button class="btnAceptar"
-            onclick="aceptar()">
-      ACEPTAR
-    </button>
-
-    <button class="btnRechazar"
-            onclick="rechazar()">
-      RECHAZAR
-    </button>
+    <button class="btnAceptar" onclick="aceptar()">ACEPTAR</button>
+    <button class="btnRechazar" onclick="rechazar()">RECHAZAR</button>
 
   </div>
 
-  <!-- SELLO -->
   <div id="selloResultado"></div>
 
 </div>
