@@ -18,6 +18,50 @@ function toggleMusica() {
 }
 
 // ============================
+// RANKING
+// ============================
+
+let rankingVisible = false;
+
+function toggleRanking() {
+
+  let contenedor = document.getElementById("rankingInicio");
+
+  rankingVisible = !rankingVisible;
+
+  if (rankingVisible) {
+    contenedor.style.display = "block";
+    cargarRankingInicio();
+  }
+  else {
+    contenedor.style.display = "none";
+  }
+}
+
+function cargarRankingInicio() {
+
+  let ranking = JSON.parse(localStorage.getItem("ranking")) || [];
+
+  let lista = document.getElementById("listaRanking");
+
+  if (!lista) return;
+
+  lista.innerHTML = "";
+
+  ranking.sort((a, b) => b.puntos - a.puntos);
+
+  for (let i = 0; i < Math.min(5, ranking.length); i++) {
+
+    let li = document.createElement("li");
+
+    li.textContent =
+      ranking[i].usuario + " - " + ranking[i].puntos + " pts";
+
+    lista.appendChild(li);
+  }
+}
+
+// ============================
 // USUARIO
 // ============================
 
@@ -25,6 +69,7 @@ let nombreUsuario = "";
 let puntuacion = 0;
 
 function mostrarModalUsuario() {
+
   document.getElementById("modalUsuario").style.display = "flex";
 }
 
@@ -57,6 +102,7 @@ function mostrarInstrucciones() {
   document.getElementById("pantallaInicio").style.display = "none";
 
   let pantalla = document.getElementById("pantallaInstrucciones");
+
   pantalla.style.display = "flex";
 
   let frases = document.getElementsByClassName("instruccion");
@@ -66,6 +112,7 @@ function mostrarInstrucciones() {
   }
 
   indiceFrase = 0;
+
   mostrarSiguienteFrase();
 }
 
@@ -74,12 +121,17 @@ function mostrarSiguienteFrase() {
   let frases = document.getElementsByClassName("instruccion");
 
   if (indiceFrase < frases.length) {
+
     frases[indiceFrase].style.opacity = 1;
+
     indiceFrase++;
   }
   else {
+
     let boton = document.getElementById("botonSiguiente");
+
     boton.innerHTML = "Comenzar Juego";
+
     boton.onclick = empezarJuego;
   }
 }
@@ -91,10 +143,8 @@ function mostrarSiguienteFrase() {
 function empezarJuego() {
 
   document.getElementById("pantallaInstrucciones").style.display = "none";
-  document.getElementById("Pasajero").style.display = "flex";
 
-  mezclarPasajeros();   // 🔥 AÑADIDO
-  pasajeroActual = 0;
+  document.getElementById("Pasajero").style.display = "flex";
 
   mostrarPasajero();
 }
@@ -133,15 +183,11 @@ let pasajeros = [
     imagen: "assets/personajes/Guadalupe_Bolivar_Atahualpa.png"
   },
 
-  // =========================
-  // NUEVOS PERSONAJES
-  // =========================
-
   {
     nombre: "Kim Jong Un",
     pais: "Corea la buena",
     edad: 33,
-    imagen: "assets/personajes/kim_jong_un.png" 
+    imagen: "assets/personajes/kim_jong_un.png"
   },
 
   {
@@ -152,7 +198,7 @@ let pasajeros = [
   },
 
   {
-    nombre: "Dickson Myass",
+    nombre: "Karen Smith",
     pais: "USA",
     edad: 27,
     imagen: "assets/personajes/trans_eunte.png"
@@ -161,11 +207,6 @@ let pasajeros = [
 ];
 
 let pasajeroActual = 0;
-
-// 🔀 NUEVO: mezclar pasajeros
-function mezclarPasajeros() {
-  pasajeros.sort(() => Math.random() - 0.5);
-}
 
 // ============================
 // MOSTRAR PASAJERO
@@ -176,9 +217,12 @@ function mostrarPasajero() {
   let p = pasajeros[pasajeroActual];
 
   let pasaporte = generarPasaporte(p);
+
   let tarjeta = generarTarjeta(p);
 
   document.getElementById("fotoPasajero").src = p.imagen;
+
+  document.getElementById("fotoPasaporte").src = p.imagen;
 
   document.getElementById("nombre").innerHTML =
     "Nombre: " + p.nombre;
@@ -189,6 +233,8 @@ function mostrarPasajero() {
   document.getElementById("edad").innerHTML =
     "Edad: " + p.edad;
 
+  // PASAPORTE
+
   document.getElementById("pasaporteNombre").innerHTML =
     "Nombre: " + pasaporte.nombre;
 
@@ -197,6 +243,8 @@ function mostrarPasajero() {
 
   document.getElementById("pasaporteEdad").innerHTML =
     "Edad: " + pasaporte.edad;
+
+  // TARJETA
 
   document.getElementById("tarjetaNombre").innerHTML =
     "Nombre: " + tarjeta.nombre;
@@ -214,7 +262,6 @@ function mostrarPasajero() {
 
 function generarPasaporte(p) {
 
-  // 🔥 35% de probabilidad de que sea falso
   let falso = Math.random() < 0.35;
 
   if (falso) {
@@ -230,12 +277,8 @@ function generarPasaporte(p) {
     let nombreFinal = p.nombre;
     let edadFinal = p.edad;
 
-    // 🔥 Tipo de error aleatorio
     let tipoFallo = Math.floor(Math.random() * 3);
 
-    // =========================
-    // NOMBRE FALSO
-    // =========================
     if (tipoFallo === 0) {
 
       nombreFinal =
@@ -244,18 +287,12 @@ function generarPasaporte(p) {
         ];
     }
 
-    // =========================
-    // EDAD FALSA
-    // =========================
     else if (tipoFallo === 1) {
 
       edadFinal =
         p.edad + Math.floor(Math.random() * 8) + 1;
     }
 
-    // =========================
-    // AMBOS FALSOS
-    // =========================
     else {
 
       nombreFinal =
@@ -274,10 +311,6 @@ function generarPasaporte(p) {
     };
   }
 
-  // =========================
-  // PASAPORTE REAL
-  // =========================
-
   return {
     nombre: p.nombre,
     pais: p.pais,
@@ -292,6 +325,7 @@ function generarPasaporte(p) {
 function generarTarjeta(p) {
 
   let vuelos = ["IB203", "FR221", "JK881", "AX009"];
+
   let asientos = ["12A", "7C", "21F", "3B"];
 
   return {
@@ -308,17 +342,29 @@ function generarTarjeta(p) {
 function mostrarDocumento(tipo) {
 
   let docs = document.querySelectorAll(".documento");
-  docs.forEach(doc => doc.classList.remove("activo"));
+
+  docs.forEach(doc => {
+    doc.classList.remove("activo");
+  });
 
   let tabs = document.querySelectorAll(".tab");
-  tabs.forEach(tab => tab.classList.remove("activa"));
+
+  tabs.forEach(tab => {
+    tab.classList.remove("activa");
+  });
 
   if (tipo === "pasaporte") {
-    document.getElementById("pasaporte").classList.add("activo");
+
+    document.getElementById("pasaporte")
+      .classList.add("activo");
+
     tabs[0].classList.add("activa");
   }
   else {
-    document.getElementById("tarjeta").classList.add("activo");
+
+    document.getElementById("tarjeta")
+      .classList.add("activo");
+
     tabs[1].classList.add("activa");
   }
 }
@@ -332,37 +378,48 @@ function siguientePasajero() {
   pasajeroActual++;
 
   if (pasajeroActual < pasajeros.length) {
+
     mostrarPasajero();
   }
   else {
+
     alert("Fin de la cola");
+
     guardarRanking();
   }
 }
 
 // ============================
-// ACEPTAR / RECHAZAR
+// ACEPTAR
 // ============================
 
 function aceptar() {
 
   puntuacion += 10;
+
   actualizarPuntuacion();
+
   mostrarSello("APROBADO");
 
   setTimeout(() => {
+
     siguientePasajero();
+
   }, 1000);
 }
 
 function rechazar() {
 
   puntuacion -= 5;
+
   actualizarPuntuacion();
+
   mostrarSello("DENEGADO");
 
   setTimeout(() => {
+
     siguientePasajero();
+
   }, 1000);
 }
 
@@ -371,12 +428,10 @@ function rechazar() {
 // ============================
 
 function actualizarPuntuacion() {
-  document.getElementById("puntuacion").innerHTML = puntuacion;
-}
 
-// ============================
-// RANKING
-// ============================
+  document.getElementById("puntuacion")
+    .innerHTML = puntuacion;
+}
 
 function guardarRanking() {
 
@@ -387,48 +442,37 @@ function guardarRanking() {
     usuario: nombreUsuario,
     puntos: puntuacion
   });
-  localStorage.setItem("ranking", JSON.stringify(ranking));
+
+  localStorage.setItem(
+    "ranking",
+    JSON.stringify(ranking)
+  );
 }
 
+// ============================
+// SELLO
+// ============================
+
 function mostrarSello(texto) {
+
   let sello = document.getElementById("selloResultado");
+
   sello.innerHTML = texto;
+
   sello.classList.remove("mostrar");
+
   void sello.offsetWidth;
 
   if (texto === "APROBADO") {
-  sello.style.borderColor = "#2ecc71"; 
-  sello.style.color = "#2ecc71";
-}
-else {
-  sello.style.borderColor = "#e74c3c"; 
-  sello.style.color = "#e74c3c";
-}
+
+    sello.style.borderColor = "#2ecc71";
+    sello.style.color = "#2ecc71";
+  }
+  else {
+
+    sello.style.borderColor = "#e74c3c";
+    sello.style.color = "#e74c3c";
+  }
+
   sello.classList.add("mostrar");
 }
-
-function cargarRankingInicio() {
-
-  let ranking = JSON.parse(localStorage.getItem("ranking")) || [];
-
-  let lista = document.getElementById("listaRanking");
-
-  if (!lista) return;
-
-  lista.innerHTML = "";
-
-  ranking.sort((a, b) => b.puntos - a.puntos);
-
-  for (let i = 0; i < Math.min(5, ranking.length); i++) {
-
-    let li = document.createElement("li");
-
-    li.textContent =
-      ranking[i].usuario + " - " + ranking[i].puntos + " pts";
-
-    lista.appendChild(li);
-  }
-}
-
-window.addEventListener("load", cargarRankingInicio);
-

@@ -12,22 +12,35 @@
 
 <!-- PANTALLA INICIO -->
 <div id="pantallaInicio">
+
   <button id="botonEmpezar" onclick="mostrarModalUsuario()">
     Empezar Partida
   </button>
 
   <button id="botonMusica" onclick="toggleMusica()">🔊</button>
 
+  <!-- BOTÓN RANKING -->
+  <button id="botonRanking" onclick="toggleRanking()">
+    🏆 RANKING
+  </button>
+
+  <!-- PANEL RANKING -->
+  <div id="rankingInicio" style="display:none;">
+    <ul id="listaRanking"></ul>
+  </div>
+
   <audio id="musicaFondo"
          src="musica/inicio/Level_One_Arrival.mp3"
          loop
          autoplay>
   </audio>
+
 </div>
 
 <!-- MODAL USUARIO -->
 <div id="modalUsuario" style="display:none;">
   <div class="modal-contenido">
+
     <h2>IDENTIFICACIÓN DEL AGENTE</h2>
 
     <input
@@ -38,6 +51,7 @@
     >
 
     <button onclick="guardarUsuario()">Continuar</button>
+
   </div>
 </div>
 
@@ -81,6 +95,7 @@
           onclick="mostrarSiguienteFrase()">
     Siguiente
   </button>
+
 </div>
 
 <!-- JUEGO -->
@@ -147,6 +162,9 @@
           REPÚBLICA DE SANCHONIA
         </div>
 
+        <!-- FOTO -->
+        <img id="fotoPasaporte" class="fotoDocumento">
+
         <div class="documentoContenido">
           <p id="pasaporteNombre"></p>
           <p id="pasaportePais"></p>
@@ -175,7 +193,6 @@
 
   </div>
 
-  
   <!-- BOTONES -->
   <div id="botonesDecision">
 
@@ -194,7 +211,6 @@
   <!-- SELLO -->
   <div id="selloResultado"></div>
 
-  
 </div>
 
 </body>
