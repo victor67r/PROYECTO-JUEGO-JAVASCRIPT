@@ -1,4 +1,7 @@
+// ============================
 // MUSICA
+// ============================
+
 function toggleMusica() {
 
   const musica = document.getElementById("musicaFondo");
@@ -14,316 +17,364 @@ function toggleMusica() {
   }
 }
 
-// VARIABLES
-var indiceFrase = 0;
+// ============================
+// USUARIO
+// ============================
 
-let nombreJugador = "";
+let nombreUsuario = "";
 let puntuacion = 0;
 
-// PANTALLA NOMBRE
-function mostrarPantallaNombre() {
-
-  document.getElementById("pantallaInicio").style.display = "none";
-
-  document.getElementById("pantallaNombre").style.display = "flex";
+function mostrarModalUsuario() {
+  document.getElementById("modalUsuario").style.display = "flex";
 }
 
-function guardarNombre() {
+function guardarUsuario() {
 
-  let nombre = document.getElementById("inputNombre").value;
+  let input = document.getElementById("inputUsuario").value.trim();
 
-  if (nombre.trim() == "") {
+  if (input === "") {
     alert("Introduce un nombre");
     return;
   }
 
-  nombreJugador = nombre;
+  nombreUsuario = input;
 
-  document.getElementById("pantallaNombre").style.display = "none";
+  document.getElementById("hudUsuario").innerHTML = nombreUsuario;
+
+  document.getElementById("modalUsuario").style.display = "none";
 
   mostrarInstrucciones();
 }
 
+// ============================
 // INSTRUCCIONES
+// ============================
+
+let indiceFrase = 0;
+
 function mostrarInstrucciones() {
 
   document.getElementById("pantallaInicio").style.display = "none";
 
-  var pantalla = document.getElementById("pantallaInstrucciones");
-
+  let pantalla = document.getElementById("pantallaInstrucciones");
   pantalla.style.display = "flex";
 
-  var frases = document.getElementsByClassName('instruccion');
+  let frases = document.getElementsByClassName("instruccion");
 
-  for (var i = 0; i < frases.length; i++) {
+  for (let i = 0; i < frases.length; i++) {
     frases[i].style.opacity = 0;
   }
 
+  indiceFrase = 0;
   mostrarSiguienteFrase();
 }
 
 function mostrarSiguienteFrase() {
 
-  var frases = document.getElementsByClassName('instruccion');
-
-  if (indiceFrase > 0) {
-    frases[indiceFrase - 1].style.opacity = 1;
-  }
+  let frases = document.getElementsByClassName("instruccion");
 
   if (indiceFrase < frases.length) {
-
     frases[indiceFrase].style.opacity = 1;
-
-    indiceFrase = indiceFrase + 1;
+    indiceFrase++;
   }
   else {
-
-    var boton = document.getElementById("botonSiguiente");
-
+    let boton = document.getElementById("botonSiguiente");
     boton.innerHTML = "Comenzar Juego";
-
     boton.onclick = empezarJuego;
   }
 }
 
+// ============================
 // EMPEZAR JUEGO
+// ============================
+
 function empezarJuego() {
 
   document.getElementById("pantallaInstrucciones").style.display = "none";
-
   document.getElementById("Pasajero").style.display = "flex";
 
-  document.getElementById("nombreJugadorHUD").innerHTML = nombreJugador;
-
-  actualizarPuntuacion();
+  mezclarPasajeros();   // 🔥 AÑADIDO
+  pasajeroActual = 0;
 
   mostrarPasajero();
 }
 
+// ============================
 // PASAJEROS
+// ============================
+
 let pasajeros = [
 
   {
-    "nombre": "Jacob Hershel",
-    "pais": "Israel",
-    "edad": 34,
-    "pasaporte_valido": false,
-    "tarjeta_embarque_valida": true,
-    "equipaje_prohibido": true,
-    "imagen": "assets/personajes/Jacob_Hershel.png"
+    nombre: "Jacob Hershel",
+    pais: "Israel",
+    edad: 34,
+    imagen: "assets/personajes/Jacob_Hershel.png"
   },
 
   {
-    "nombre": "Mohammed Abdul",
-    "pais": "Yemen",
-    "edad": 28,
-    "pasaporte_valido": false,
-    "tarjeta_embarque_valida": false,
-    "equipaje_prohibido": true,
-    "imagen": "assets/personajes/Mohammed_Abdul.png"
+    nombre: "Mohammed Abdul",
+    pais: "Yemen",
+    edad: 28,
+    imagen: "assets/personajes/Mohammed_Abdul.png"
   },
 
   {
-    "nombre": "Borja Blasco-Ibáñez de Álvarez",
-    "pais": "España",
-    "edad": 37,
-    "pasaporte_valido": true,
-    "tarjeta_embarque_valida": true,
-    "equipaje_prohibido": false,
-    "imagen": "assets/personajes/Borja_BlascoIbanez_de_Alvarez.png"
+    nombre: "Borja Blasco-Ibáñez",
+    pais: "España",
+    edad: 37,
+    imagen: "assets/personajes/Borja_BlascoIbanez_de_Alvarez.png"
   },
 
   {
-    "nombre": "Guadalupe Bolivar Atahualpa",
-    "pais": "Bolivia",
-    "edad": 17,
-    "pasaporte_valido": true,
-    "tarjeta_embarque_valida": false,
-    "equipaje_prohibido": true,
-    "imagen": "assets/personajes/Guadalupe_Bolivar_Atahualpa.png"
+    nombre: "Guadalupe Atahualpa",
+    pais: "Bolivia",
+    edad: 17,
+    imagen: "assets/personajes/Guadalupe_Bolivar_Atahualpa.png"
+  },
+
+  // =========================
+  // NUEVOS PERSONAJES
+  // =========================
+
+  {
+    nombre: "Kim Jong Un",
+    pais: "Corea la buena",
+    edad: 33,
+    imagen: "assets/personajes/kim_jong_un.png" 
+  },
+
+  {
+    nombre: "Ricardo Klement",
+    pais: "Argentina",
+    edad: 44,
+    imagen: "assets/personajes/adolfo_hilario.png"
+  },
+
+  {
+    nombre: "Dickson Myass",
+    pais: "USA",
+    edad: 27,
+    imagen: "assets/personajes/trans_eunte.png"
   }
+
 ];
 
 let pasajeroActual = 0;
 
+// 🔀 NUEVO: mezclar pasajeros
+function mezclarPasajeros() {
+  pasajeros.sort(() => Math.random() - 0.5);
+}
+
+// ============================
 // MOSTRAR PASAJERO
+// ============================
+
 function mostrarPasajero() {
 
   let p = pasajeros[pasajeroActual];
 
   let pasaporte = generarPasaporte(p);
+  let tarjeta = generarTarjeta(p);
+
+  document.getElementById("fotoPasajero").src = p.imagen;
 
   document.getElementById("nombre").innerHTML =
     "Nombre: " + p.nombre;
 
   document.getElementById("pais").innerHTML =
-    "Pais: " + p.pais;
+    "País: " + p.pais;
 
   document.getElementById("edad").innerHTML =
     "Edad: " + p.edad;
-
-  document.getElementById("fotoPasajero").src =
-    p.imagen;
 
   document.getElementById("pasaporteNombre").innerHTML =
     "Nombre: " + pasaporte.nombre;
 
   document.getElementById("pasaportePais").innerHTML =
-    "Pais: " + pasaporte.pais;
+    "País: " + pasaporte.pais;
 
   document.getElementById("pasaporteEdad").innerHTML =
     "Edad: " + pasaporte.edad;
+
+  document.getElementById("tarjetaNombre").innerHTML =
+    "Nombre: " + tarjeta.nombre;
+
+  document.getElementById("tarjetaVuelo").innerHTML =
+    "Vuelo: " + tarjeta.vuelo;
+
+  document.getElementById("tarjetaAsiento").innerHTML =
+    "Asiento: " + tarjeta.asiento;
 }
 
-// SIGUIENTE PASAJERO
+// ============================
+// GENERAR PASAPORTE
+// ============================
+
+function generarPasaporte(p) {
+
+  let falso = Math.random() < 0.5;
+
+  if (falso) {
+    return {
+      nombre: "Luis Mendoza",
+      pais: p.pais,
+      edad: p.edad + 2
+    };
+  }
+
+  return {
+    nombre: p.nombre,
+    pais: p.pais,
+    edad: p.edad
+  };
+}
+
+// ============================
+// GENERAR TARJETA
+// ============================
+
+function generarTarjeta(p) {
+
+  let vuelos = ["IB203", "FR221", "JK881", "AX009"];
+  let asientos = ["12A", "7C", "21F", "3B"];
+
+  return {
+    nombre: p.nombre,
+    vuelo: vuelos[Math.floor(Math.random() * vuelos.length)],
+    asiento: asientos[Math.floor(Math.random() * asientos.length)]
+  };
+}
+
+// ============================
+// CAMBIO DE DOCUMENTOS
+// ============================
+
+function mostrarDocumento(tipo) {
+
+  let docs = document.querySelectorAll(".documento");
+  docs.forEach(doc => doc.classList.remove("activo"));
+
+  let tabs = document.querySelectorAll(".tab");
+  tabs.forEach(tab => tab.classList.remove("activa"));
+
+  if (tipo === "pasaporte") {
+    document.getElementById("pasaporte").classList.add("activo");
+    tabs[0].classList.add("activa");
+  }
+  else {
+    document.getElementById("tarjeta").classList.add("activo");
+    tabs[1].classList.add("activa");
+  }
+}
+
+// ============================
+// PASAR PASAJERO
+// ============================
+
 function siguientePasajero() {
 
   pasajeroActual++;
 
   if (pasajeroActual < pasajeros.length) {
-
     mostrarPasajero();
   }
   else {
-
+    alert("Fin de la cola");
     guardarRanking();
-
-    alert(
-      "Fin del juego\n\n" +
-      "Jugador: " + nombreJugador +
-      "\nPuntuación: " + puntuacion
-    );
   }
 }
 
-// BOTONES
+// ============================
+// ACEPTAR / RECHAZAR
+// ============================
+
 function aceptar() {
 
-  puntuacion = puntuacion + 10;
-
+  puntuacion += 10;
   actualizarPuntuacion();
+  mostrarSello("APROBADO");
 
-  mostrarSello("APROBADO", "aprobado");
-
-  setTimeout(function() {
+  setTimeout(() => {
     siguientePasajero();
   }, 1000);
 }
 
 function rechazar() {
 
-  puntuacion = puntuacion + 5;
-
+  puntuacion -= 5;
   actualizarPuntuacion();
+  mostrarSello("DENEGADO");
 
-  mostrarSello("DENEGADO", "denegado");
-
-  setTimeout(function() {
+  setTimeout(() => {
     siguientePasajero();
   }, 1000);
 }
 
-// PASAPORTE
-function generarPasaporte(p) {
-
-  let esFalso = Math.random() < 0.5;
-
-  let nombresFalsos = [
-    "Carlos Mendoza",
-    "Juan Pérez",
-    "Luis Ramírez",
-    "Antonio Gómez"
-  ];
-
-  let paisesFalsos = [
-    "Argentina",
-    "Portugal",
-    "Italia",
-    "Francia"
-  ];
-
-  let nombrePasaporte;
-  let paisPasaporte;
-  let edadPasaporte;
-
-  if (esFalso) {
-
-    let nombreRandom =
-      nombresFalsos[Math.floor(Math.random() * nombresFalsos.length)];
-
-    let paisRandom =
-      paisesFalsos[Math.floor(Math.random() * paisesFalsos.length)];
-
-    nombrePasaporte = nombreRandom;
-    paisPasaporte = paisRandom;
-    edadPasaporte = p.edad + 5;
-  }
-  else {
-
-    nombrePasaporte = p.nombre;
-    paisPasaporte = p.pais;
-    edadPasaporte = p.edad;
-  }
-
-  return {
-    nombre: nombrePasaporte,
-    pais: paisPasaporte,
-    edad: edadPasaporte
-  };
-}
-
+// ============================
 // PUNTUACION
-function actualizarPuntuacion() {
+// ============================
 
-  document.getElementById("puntuacionHUD").innerHTML =
-    puntuacion;
+function actualizarPuntuacion() {
+  document.getElementById("puntuacion").innerHTML = puntuacion;
 }
 
+// ============================
 // RANKING
+// ============================
+
 function guardarRanking() {
 
-  let ranking = localStorage.getItem("ranking");
-
-  if (ranking == null) {
-
-    ranking = [];
-  }
-  else {
-
-    ranking = JSON.parse(ranking);
-  }
+  let ranking =
+    JSON.parse(localStorage.getItem("ranking")) || [];
 
   ranking.push({
-    nombre: nombreJugador,
+    usuario: nombreUsuario,
     puntos: puntuacion
   });
-
-  ranking.sort(function(a, b) {
-    return b.puntos - a.puntos;
-  });
-
   localStorage.setItem("ranking", JSON.stringify(ranking));
 }
 
-// SELLO
-function mostrarSello(texto, tipo) {
-
-  let sello = document.createElement("div");
-
-  sello.id = "selloDecision";
-
+function mostrarSello(texto) {
+  let sello = document.getElementById("selloResultado");
   sello.innerHTML = texto;
+  sello.classList.remove("mostrar");
+  void sello.offsetWidth;
 
-  if (tipo == "aprobado") {
-    sello.classList.add("selloAprobado");
-  }
-  else {
-    sello.classList.add("selloDenegado");
-  }
-
-  document.body.appendChild(sello);
-
-  setTimeout(function() {
-    sello.remove();
-  }, 1000);
+  if (texto === "APROBADO") {
+  sello.style.borderColor = "#2ecc71"; 
+  sello.style.color = "#2ecc71";
 }
+else {
+  sello.style.borderColor = "#e74c3c"; 
+  sello.style.color = "#e74c3c";
+}
+  sello.classList.add("mostrar");
+}
+
+function cargarRankingInicio() {
+
+  let ranking = JSON.parse(localStorage.getItem("ranking")) || [];
+
+  let lista = document.getElementById("listaRanking");
+
+  if (!lista) return;
+
+  lista.innerHTML = "";
+
+  ranking.sort((a, b) => b.puntos - a.puntos);
+
+  for (let i = 0; i < Math.min(5, ranking.length); i++) {
+
+    let li = document.createElement("li");
+
+    li.textContent =
+      ranking[i].usuario + " - " + ranking[i].puntos + " pts";
+
+    lista.appendChild(li);
+  }
+}
+
+window.addEventListener("load", cargarRankingInicio);
+
