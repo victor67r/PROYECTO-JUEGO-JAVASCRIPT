@@ -247,6 +247,12 @@ let pasajeros = [
     pais: "USA",
     edad: 27,
     imagen: "assets/personajes/trans.png"
+  },
+  {
+    nombre: "German Martinez Calvente",
+    pais: "Turquía",
+    edad: 67,
+    imagen: "assets/personajes/German.png"
   }
 ];
 
