@@ -1,7 +1,7 @@
 // ============================
 // MUSICA
 // ============================
-
+let logroMostrado = false;
 function toggleMusica() {
 
   const musica =
@@ -593,12 +593,18 @@ function siguientePasajero() {
 
     guardarRanking();
 
-    alert(
-      "Fin de la cola\n\nPuntuación final: " +
-      puntuacion
-    );
+// 👇 NUEVO LOGRO
+comprobarLogroMaximo();
 
-    location.reload();
+setTimeout(() => {
+
+  alert(
+    "Fin de la cola\n\nPuntuación final: " + puntuacion
+  );
+
+  location.reload();
+
+}, 1500);
   }
 }
 
@@ -725,4 +731,24 @@ function borrarRanking() {
   localStorage.removeItem("ranking");
 
   cargarRankingPantallaInicio();
+}
+
+// ============================
+// LOGRO MAXIMO
+// ============================
+
+function comprobarLogroMaximo() {
+
+  const maximo = pasajeros.length * 10;
+
+  if (puntuacion >= maximo) {
+
+    logroMostrado = true;
+
+    document.getElementById("logroMaximo").style.display = "flex";
+  }
+}
+
+function cerrarLogro() {
+  document.getElementById("logroMaximo").style.display = "none";
 }

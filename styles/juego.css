@@ -433,3 +433,22 @@ JUEGO
     transform:translate(-50%, -50%) scale(1) rotate(-15deg);
   }
 }
+
+
+#logroMaximo{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  color:white;
+  text-align:center;
+}
+
+#logroMaximo div{
+  background:#2b211b;
+  padding:40px;
+  border-radius:10px;
+}
