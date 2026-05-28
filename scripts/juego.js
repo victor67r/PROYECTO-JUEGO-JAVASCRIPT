@@ -16,7 +16,7 @@ function toggleMusica() {
 }
 
 // ============================
-// RANKING INICIO (NUEVO)
+// RANKING INICIO
 // ============================
 
 let rankingInicioVisible = false;
@@ -47,15 +47,22 @@ function cargarRankingPantallaInicio() {
   ranking.sort((a, b) => b.puntos - a.puntos);
 
   if (ranking.length === 0) {
+
     let li = document.createElement("li");
     li.textContent = "No hay partidas guardadas";
+
     lista.appendChild(li);
+
     return;
   }
 
   ranking.forEach(j => {
+
     let li = document.createElement("li");
-    li.textContent = `${j.usuario} - ${j.puntos} pts`;
+
+    li.textContent =
+      `${j.usuario} - ${j.puntos} pts`;
+
     lista.appendChild(li);
   });
 }
@@ -73,15 +80,21 @@ function mostrarModalUsuario() {
 
 function guardarUsuario() {
 
-  let input = document.getElementById("inputUsuario").value.trim();
+  let input =
+    document.getElementById("inputUsuario").value.trim();
 
-  if (!input) return alert("Introduce un nombre");
+  if (!input) {
+    alert("Introduce un nombre");
+    return;
+  }
 
   nombreUsuario = input;
 
-  document.getElementById("hudUsuario").innerHTML = nombreUsuario;
+  document.getElementById("hudUsuario").innerHTML =
+    nombreUsuario;
 
-  document.getElementById("modalUsuario").style.display = "none";
+  document.getElementById("modalUsuario").style.display =
+    "none";
 
   mostrarInstrucciones();
 }
@@ -93,31 +106,45 @@ function guardarUsuario() {
 let indiceFrase = 0;
 
 function mostrarInstrucciones() {
-  document.getElementById("pantallaInicio").style.display = "none";
 
-  let pantalla = document.getElementById("pantallaInstrucciones");
+  document.getElementById("pantallaInicio").style.display =
+    "none";
+
+  let pantalla =
+    document.getElementById("pantallaInstrucciones");
+
   pantalla.style.display = "flex";
 
-  let frases = document.getElementsByClassName("instruccion");
+  let frases =
+    document.getElementsByClassName("instruccion");
 
   for (let i = 0; i < frases.length; i++) {
     frases[i].style.opacity = 0;
   }
 
   indiceFrase = 0;
+
   mostrarSiguienteFrase();
 }
 
 function mostrarSiguienteFrase() {
 
-  let frases = document.getElementsByClassName("instruccion");
+  let frases =
+    document.getElementsByClassName("instruccion");
 
   if (indiceFrase < frases.length) {
+
     frases[indiceFrase].style.opacity = 1;
+
     indiceFrase++;
+
   } else {
-    let boton = document.getElementById("botonSiguiente");
+
+    let boton =
+      document.getElementById("botonSiguiente");
+
     boton.innerHTML = "Comenzar Juego";
+
     boton.onclick = empezarJuego;
   }
 }
@@ -127,32 +154,87 @@ function mostrarSiguienteFrase() {
 // ============================
 
 function empezarJuego() {
-  document.getElementById("pantallaInstrucciones").style.display = "none";
-  document.getElementById("Pasajero").style.display = "flex";
+
+  document.getElementById("pantallaInstrucciones").style.display =
+    "none";
+
+  document.getElementById("Pasajero").style.display =
+    "flex";
+
   mostrarPasajero();
 }
 
 // ============================
-// PASAJEROS + FOTOS ALEATORIAS
+// PASAJEROS
 // ============================
 
 let pasajeros = [
-  { nombre: "Jacob Hershel", pais: "Israel", edad: 34, imagen: "assets/personajes/Jacob_Hershel.png" },
-  { nombre: "Mohammed Abdul", pais: "Yemen", edad: 28, imagen: "assets/personajes/Mohammed_Abdul.png" },
-  { nombre: "Borja Blasco-Ibáñez", pais: "España", edad: 37, imagen: "assets/personajes/Borja_BlascoIbanez_de_Alvarez.png" },
-  { nombre: "Guadalupe Atahualpa", pais: "Bolivia", edad: 17, imagen: "assets/personajes/Guadalupe_Bolivar_Atahualpa.png" },
-  { nombre: "Kim Jong Un", pais: "Corea la buena", edad: 33, imagen: "assets/personajes/kim_jong_un.png" },
-  { nombre: "Ricardo Klement", pais: "Argentina", edad: 44, imagen: "assets/personajes/adolfo_hilario.png" },
-  { nombre: "Karen Smith", pais: "USA", edad: 27, imagen: "assets/personajes/trans_eunte.png" }
+
+  {
+    nombre: "Jacob Hershel",
+    pais: "Israel",
+    edad: 34,
+    imagen: "assets/personajes/Jacob_Hershel.png"
+  },
+
+  {
+    nombre: "Mohammed Abdul",
+    pais: "Yemen",
+    edad: 28,
+    imagen: "assets/personajes/Mohammed_Abdul.png"
+  },
+
+  {
+    nombre: "Borja Blasco-Ibáñez",
+    pais: "España",
+    edad: 37,
+    imagen: "assets/personajes/Borja_BlascoIbanez_de_Alvarez.png"
+  },
+
+  {
+    nombre: "Guadalupe Atahualpa",
+    pais: "Bolivia",
+    edad: 17,
+    imagen: "assets/personajes/Guadalupe_Bolivar_Atahualpa.png"
+  },
+
+  {
+    nombre: "Kim Jong Un",
+    pais: "Corea la buena",
+    edad: 33,
+    imagen: "assets/personajes/kim_jong_un.png"
+  },
+
+  {
+    nombre: "Ricardo Klement",
+    pais: "Argentina",
+    edad: 44,
+    imagen: "assets/personajes/adolfo_hilario.png"
+  },
+
+  {
+    nombre: "Karen Smith",
+    pais: "USA",
+    edad: 27,
+    imagen: "assets/personajes/trans_eunte.png"
+  }
 ];
 
 let fotosAleatorias = [
   "assets/pasaporte/opcion1.png",
   "assets/pasaporte/opcion2.png"
-  
 ];
 
 let pasajeroActual = 0;
+
+// ============================
+// NUEVAS VARIABLES
+// ============================
+
+let datosCorrectos = false;
+
+let pasajeroMostrado;
+let pasaporteMostrado;
 
 // ============================
 // MOSTRAR PASAJERO
@@ -163,27 +245,58 @@ function mostrarPasajero() {
   let p = pasajeros[pasajeroActual];
 
   let pasaporte = generarPasaporte(p);
+
   let tarjeta = generarTarjeta(p);
 
-  document.getElementById("fotoPasajero").src = p.imagen;
+  // GUARDAR DATOS
+  pasajeroMostrado = p;
+  pasaporteMostrado = pasaporte;
 
-  document.getElementById("nombre").innerHTML = "Nombre: " + p.nombre;
-  document.getElementById("pais").innerHTML = "País: " + p.pais;
-  document.getElementById("edad").innerHTML = "Edad: " + p.edad;
+  // COMPROBAR DATOS
+  datosCorrectos =
+    p.nombre === pasaporte.nombre &&
+    p.edad === pasaporte.edad &&
+    p.pais === pasaporte.pais;
 
-  document.getElementById("fotoPasaporte").src = pasaporte.imagen;
+  // PERSONA
+  document.getElementById("fotoPasajero").src =
+    p.imagen;
 
-  document.getElementById("pasaporteNombre").innerHTML = "Nombre: " + pasaporte.nombre;
-  document.getElementById("pasaportePais").innerHTML = "País: " + pasaporte.pais;
-  document.getElementById("pasaporteEdad").innerHTML = "Edad: " + pasaporte.edad;
+  document.getElementById("nombre").innerHTML =
+    "Nombre: " + p.nombre;
 
-  document.getElementById("tarjetaNombre").innerHTML = "Nombre: " + tarjeta.nombre;
-  document.getElementById("tarjetaVuelo").innerHTML = "Vuelo: " + tarjeta.vuelo;
-  document.getElementById("tarjetaAsiento").innerHTML = "Asiento: " + tarjeta.asiento;
+  document.getElementById("pais").innerHTML =
+    "País: " + p.pais;
+
+  document.getElementById("edad").innerHTML =
+    "Edad: " + p.edad;
+
+  // PASAPORTE
+  document.getElementById("fotoPasaporte").src =
+    pasaporte.imagen;
+
+  document.getElementById("pasaporteNombre").innerHTML =
+    "Nombre: " + pasaporte.nombre;
+
+  document.getElementById("pasaportePais").innerHTML =
+    "País: " + pasaporte.pais;
+
+  document.getElementById("pasaporteEdad").innerHTML =
+    "Edad: " + pasaporte.edad;
+
+  // TARJETA
+  document.getElementById("tarjetaNombre").innerHTML =
+    "Nombre: " + tarjeta.nombre;
+
+  document.getElementById("tarjetaVuelo").innerHTML =
+    "Vuelo: " + tarjeta.vuelo;
+
+  document.getElementById("tarjetaAsiento").innerHTML =
+    "Asiento: " + tarjeta.asiento;
 }
 
 // ============================
-// PASAPORTE
+// GENERAR PASAPORTE
 // ============================
 
 function generarPasaporte(p) {
@@ -193,49 +306,100 @@ function generarPasaporte(p) {
   let fotoFinal = p.imagen;
 
   if (Math.random() < 0.2) {
-    fotoFinal = fotosAleatorias[Math.floor(Math.random() * fotosAleatorias.length)];
+
+    fotoFinal =
+      fotosAleatorias[
+        Math.floor(Math.random() * fotosAleatorias.length)
+      ];
   }
 
   let nombreFinal = p.nombre;
   let edadFinal = p.edad;
+  let paisFinal = p.pais;
 
   if (falso) {
 
-    let nombresFalsos = ["Luis Mendoza","Carlos Ruiz","John Smith","Ivan Petrov","Ali Hassan"];
+    let nombresFalsos = [
+      "Luis Mendoza",
+      "Carlos Ruiz",
+      "John Smith",
+      "Ivan Petrov",
+      "Ali Hassan"
+    ];
 
-    let tipoFallo = Math.floor(Math.random() * 3);
+    let paisesFalsos = [
+      "Rusia",
+      "Brasil",
+      "Canadá",
+      "Francia",
+      "Japón"
+    ];
+
+    let tipoFallo =
+      Math.floor(Math.random() * 3);
 
     if (tipoFallo === 0) {
-      nombreFinal = nombresFalsos[Math.floor(Math.random() * nombresFalsos.length)];
+
+      nombreFinal =
+        nombresFalsos[
+          Math.floor(Math.random() * nombresFalsos.length)
+        ];
+
     } else if (tipoFallo === 1) {
-      edadFinal = p.edad + Math.floor(Math.random() * 8) + 1;
+
+      edadFinal =
+        p.edad + Math.floor(Math.random() * 8) + 1;
+
     } else {
-      nombreFinal = nombresFalsos[Math.floor(Math.random() * nombresFalsos.length)];
-      edadFinal = p.edad + Math.floor(Math.random() * 8) + 1;
+
+      paisFinal =
+        paisesFalsos[
+          Math.floor(Math.random() * paisesFalsos.length)
+        ];
     }
   }
 
   return {
     nombre: nombreFinal,
-    pais: p.pais,
+    pais: paisFinal,
     edad: edadFinal,
     imagen: fotoFinal
   };
 }
 
 // ============================
-// TARJETA
+// GENERAR TARJETA
 // ============================
 
 function generarTarjeta(p) {
 
-  let vuelos = ["IB203", "FR221", "JK881", "AX009"];
-  let asientos = ["12A", "7C", "21F", "3B"];
+  let vuelos = [
+    "IB203",
+    "FR221",
+    "JK881",
+    "AX009"
+  ];
+
+  let asientos = [
+    "12A",
+    "7C",
+    "21F",
+    "3B"
+  ];
 
   return {
+
     nombre: p.nombre,
-    vuelo: vuelos[Math.floor(Math.random() * vuelos.length)],
-    asiento: asientos[Math.floor(Math.random() * asientos.length)]
+
+    vuelo:
+      vuelos[
+        Math.floor(Math.random() * vuelos.length)
+      ],
+
+    asiento:
+      asientos[
+        Math.floor(Math.random() * asientos.length)
+      ]
   };
 }
 
@@ -245,23 +409,38 @@ function generarTarjeta(p) {
 
 function mostrarDocumento(tipo) {
 
-  let docs = document.querySelectorAll(".documento");
-  let tabs = document.querySelectorAll(".tab");
+  let docs =
+    document.querySelectorAll(".documento");
 
-  docs.forEach(d => d.classList.remove("activo"));
-  tabs.forEach(t => t.classList.remove("activa"));
+  let tabs =
+    document.querySelectorAll(".tab");
+
+  docs.forEach(d =>
+    d.classList.remove("activo")
+  );
+
+  tabs.forEach(t =>
+    t.classList.remove("activa")
+  );
 
   if (tipo === "pasaporte") {
-    document.getElementById("pasaporte").classList.add("activo");
+
+    document.getElementById("pasaporte")
+      .classList.add("activo");
+
     tabs[0].classList.add("activa");
+
   } else {
-    document.getElementById("tarjeta").classList.add("activo");
+
+    document.getElementById("tarjeta")
+      .classList.add("activo");
+
     tabs[1].classList.add("activa");
   }
 }
 
 // ============================
-// PASAR PASAJERO
+// SIGUIENTE PASAJERO
 // ============================
 
 function siguientePasajero() {
@@ -269,10 +448,19 @@ function siguientePasajero() {
   pasajeroActual++;
 
   if (pasajeroActual < pasajeros.length) {
+
     mostrarPasajero();
+
   } else {
-    alert("Fin de la cola");
+
     guardarRanking();
+
+    alert(
+      "Fin de la cola\n\nPuntuación final: " +
+      puntuacion
+    );
+
+    location.reload();
   }
 }
 
@@ -281,16 +469,42 @@ function siguientePasajero() {
 // ============================
 
 function aceptar() {
-  puntuacion += 10;
+
+  if (datosCorrectos) {
+
+    puntuacion += 10;
+
+    mostrarSello("APROBADO");
+
+  } else {
+
+    puntuacion -= 10;
+
+    mostrarSello("ERROR");
+  }
+
   actualizarPuntuacion();
-  mostrarSello("APROBADO");
+
   setTimeout(siguientePasajero, 1000);
 }
 
 function rechazar() {
-  puntuacion -= 5;
+
+  if (!datosCorrectos) {
+
+    puntuacion += 10;
+
+    mostrarSello("DENEGADO");
+
+  } else {
+
+    puntuacion -= 10;
+
+    mostrarSello("ERROR");
+  }
+
   actualizarPuntuacion();
-  mostrarSello("DENEGADO");
+
   setTimeout(siguientePasajero, 1000);
 }
 
@@ -299,19 +513,29 @@ function rechazar() {
 // ============================
 
 function actualizarPuntuacion() {
-  document.getElementById("puntuacion").innerHTML = puntuacion;
+
+  document.getElementById("puntuacion").innerHTML =
+    puntuacion;
 }
+
+// ============================
+// GUARDAR RANKING
+// ============================
 
 function guardarRanking() {
 
-  let ranking = JSON.parse(localStorage.getItem("ranking")) || [];
+  let ranking =
+    JSON.parse(localStorage.getItem("ranking")) || [];
 
   ranking.push({
     usuario: nombreUsuario,
     puntos: puntuacion
   });
 
-  localStorage.setItem("ranking", JSON.stringify(ranking));
+  localStorage.setItem(
+    "ranking",
+    JSON.stringify(ranking)
+  );
 }
 
 // ============================
@@ -320,19 +544,33 @@ function guardarRanking() {
 
 function mostrarSello(texto) {
 
-  let sello = document.getElementById("selloResultado");
+  let sello =
+    document.getElementById("selloResultado");
 
   sello.innerHTML = texto;
+
   sello.classList.remove("mostrar");
 
   void sello.offsetWidth;
 
-  if (texto === "APROBADO") {
+  if (
+    texto === "APROBADO"
+  ) {
+
     sello.style.borderColor = "#2ecc71";
     sello.style.color = "#2ecc71";
-  } else {
+
+  } else if (
+    texto === "DENEGADO"
+  ) {
+
     sello.style.borderColor = "#e74c3c";
     sello.style.color = "#e74c3c";
+
+  } else {
+
+    sello.style.borderColor = "#f1c40f";
+    sello.style.color = "#f1c40f";
   }
 
   sello.classList.add("mostrar");
