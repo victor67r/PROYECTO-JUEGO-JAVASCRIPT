@@ -696,3 +696,14 @@ function mostrarSello(texto) {
   }
   sello.classList.add("mostrar");
 }
+
+function borrarRanking() {
+
+  let confirmar = confirm("¿Seguro que quieres borrar todo el ranking?");
+
+  if (!confirmar) return;
+
+  localStorage.removeItem("ranking");
+
+  cargarRankingPantallaInicio();
+}

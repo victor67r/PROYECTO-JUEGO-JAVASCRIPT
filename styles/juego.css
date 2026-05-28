@@ -57,8 +57,12 @@ PANTALLA INICIO
   cursor:pointer;
 }
 
+/* =========================
+RANKING INICIO (CORREGIDO)
+========================= */
+
 #rankingInicioPantalla{
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0.7);
 
   padding:15px;
 
@@ -67,15 +71,42 @@ PANTALLA INICIO
   color:#f2e3c6;
 
   width:250px;
+
+  display:flex;
+  flex-direction:column;
+  gap:10px;
 }
 
 #listaRankingInicio{
   list-style:none;
+  padding:0;
+  margin:0;
+
+  max-height:160px;
+  overflow-y:auto;
 }
 
 #listaRankingInicio li{
   font-size:14px;
   margin:5px 0;
+}
+
+/* BOTÓN BORRAR RANKING (VISIBLE Y ROJO) */
+#botonBorrarRanking{
+  padding:10px;
+  border:none;
+  border-radius:8px;
+
+  background:#c0392b;
+  color:white;
+
+  cursor:pointer;
+
+  font-weight:bold;
+}
+
+#botonBorrarRanking:hover{
+  background:#e74c3c;
 }
 
 /* BOTÓN MÚSICA */

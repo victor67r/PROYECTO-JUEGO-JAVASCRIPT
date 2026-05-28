@@ -17,14 +17,19 @@
     Empezar Partida
   </button>
 
-  <!-- 🆕 BOTÓN RANKING INICIO -->
   <button id="botonRankingInicio" onclick="toggleRankingInicio()">
     🏆 VER RANKING
   </button>
 
-  <!-- 🆕 PANEL RANKING INICIO -->
+  <!-- PANEL RANKING -->
   <div id="rankingInicioPantalla" style="display:none;">
+
     <ul id="listaRankingInicio"></ul>
+
+    <button id="botonBorrarRanking" onclick="borrarRanking()">
+      🗑️ Borrar ranking
+    </button>
+
   </div>
 
   <button id="botonMusica" onclick="toggleMusica()">🔊</button>
@@ -67,8 +72,6 @@
   </ul>
 
   <p class="instruccion">Comprueba que todos los datos coincidan.</p>
-
-  <p class="instruccion">Si algo es sospechoso, deniega el acceso.</p>
 
   <p class="instruccion"><strong>El futuro del país está en tus manos.</strong></p>
 
