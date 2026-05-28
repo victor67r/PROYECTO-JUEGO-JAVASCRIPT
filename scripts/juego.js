@@ -200,56 +200,59 @@ let pasajeros = [
     nombre: "Jacob Hershel",
     pais: "Israel",
     edad: 34,
-    imagen: "assets/personajes/Jacob_Hershel.png"
+    imagen: "assets/personajes/jacob.png"
   },
 
   {
     nombre: "Mohammed Abdul",
     pais: "Yemen",
     edad: 28,
-    imagen: "assets/personajes/Mohammed_Abdul.png"
+    imagen: "assets/personajes/Mohammed.png"
   },
 
   {
     nombre: "Borja Blasco-Ibáñez",
     pais: "España",
     edad: 37,
-    imagen: "assets/personajes/Borja_BlascoIbanez_de_Alvarez.png"
+    imagen: "assets/personajes/Borja.png"
   },
 
   {
     nombre: "Guadalupe Atahualpa",
     pais: "Bolivia",
     edad: 17,
-    imagen: "assets/personajes/Guadalupe_Bolivar_Atahualpa.png"
+    imagen: "assets/personajes/Guadalupe.png"
   },
 
   {
     nombre: "Kim Jong Un",
     pais: "Corea la buena",
     edad: 33,
-    imagen: "assets/personajes/kim_jong_un.png"
+    imagen: "assets/personajes/kim.png"
   },
 
   {
     nombre: "Ricardo Klement",
     pais: "Argentina",
     edad: 44,
-    imagen: "assets/personajes/adolfo_hilario.png"
+    imagen: "assets/personajes/adolfo.png"
   },
 
   {
     nombre: "Karen Smith",
     pais: "USA",
     edad: 27,
-    imagen: "assets/personajes/trans_eunte.png"
+    imagen: "assets/personajes/trans.png"
   }
 ];
 
 let fotosAleatorias = [
 
-  "assets/pasaporte/opcion1.png",
-  "assets/pasaporte/opcion2.png"
+  "assets/pasaporte/opcion11.png",
+  "assets/pasaporte/opcion22.png",
+  "assets/pasaporte/opcion33.png",
+  "assets/pasaporte/opcion44.png",
+  "assets/pasaporte/opcion55.png"
 ];
 
 let pasajeroActual = 0;
