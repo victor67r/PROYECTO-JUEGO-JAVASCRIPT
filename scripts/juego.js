@@ -181,6 +181,10 @@ function mostrarSiguienteFrase() {
 
 function empezarJuego() {
 
+  mezclarPasajeros();   // mezcla el orden
+
+  pasajeroActual = 0;   // reinicia el índice
+
   document.getElementById("pantallaInstrucciones")
     .style.display = "none";
 
@@ -256,7 +260,13 @@ let fotosAleatorias = [
 ];
 
 let pasajeroActual = 0;
-
+// mezcla pasajeros
+function mezclarPasajeros() {
+  for (let i = pasajeros.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pasajeros[i], pasajeros[j]] = [pasajeros[j], pasajeros[i]];
+  }
+}
 // ============================
 // VARIABLES VALIDACION
 // ============================
