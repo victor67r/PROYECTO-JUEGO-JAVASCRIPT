@@ -3,14 +3,23 @@
 // ============================
 
 function toggleMusica() {
-  const musica = document.getElementById("musicaFondo");
-  const boton = document.getElementById("botonMusica");
+
+  const musica =
+    document.getElementById("musicaFondo");
+
+  const boton =
+    document.getElementById("botonMusica");
 
   if (musica.muted) {
+
     musica.muted = false;
+
     boton.textContent = "🔊";
+
   } else {
+
     musica.muted = true;
+
     boton.textContent = "🔇";
   }
 }
@@ -23,14 +32,20 @@ let rankingInicioVisible = false;
 
 function toggleRankingInicio() {
 
-  let contenedor = document.getElementById("rankingInicioPantalla");
+  let contenedor =
+    document.getElementById("rankingInicioPantalla");
 
-  rankingInicioVisible = !rankingInicioVisible;
+  rankingInicioVisible =
+    !rankingInicioVisible;
 
   if (rankingInicioVisible) {
+
     contenedor.style.display = "block";
+
     cargarRankingPantallaInicio();
+
   } else {
+
     contenedor.style.display = "none";
   }
 }
@@ -40,7 +55,8 @@ function cargarRankingPantallaInicio() {
   let ranking =
     JSON.parse(localStorage.getItem("ranking")) || [];
 
-  let lista = document.getElementById("listaRankingInicio");
+  let lista =
+    document.getElementById("listaRankingInicio");
 
   lista.innerHTML = "";
 
@@ -49,7 +65,9 @@ function cargarRankingPantallaInicio() {
   if (ranking.length === 0) {
 
     let li = document.createElement("li");
-    li.textContent = "No hay partidas guardadas";
+
+    li.textContent =
+      "No hay partidas guardadas";
 
     lista.appendChild(li);
 
@@ -75,26 +93,32 @@ let nombreUsuario = "";
 let puntuacion = 0;
 
 function mostrarModalUsuario() {
-  document.getElementById("modalUsuario").style.display = "flex";
+
+  document.getElementById("modalUsuario")
+    .style.display = "flex";
 }
 
 function guardarUsuario() {
 
   let input =
-    document.getElementById("inputUsuario").value.trim();
+    document.getElementById("inputUsuario")
+      .value
+      .trim();
 
   if (!input) {
+
     alert("Introduce un nombre");
+
     return;
   }
 
   nombreUsuario = input;
 
-  document.getElementById("hudUsuario").innerHTML =
-    nombreUsuario;
+  document.getElementById("hudUsuario")
+    .innerHTML = nombreUsuario;
 
-  document.getElementById("modalUsuario").style.display =
-    "none";
+  document.getElementById("modalUsuario")
+    .style.display = "none";
 
   mostrarInstrucciones();
 }
@@ -107,8 +131,8 @@ let indiceFrase = 0;
 
 function mostrarInstrucciones() {
 
-  document.getElementById("pantallaInicio").style.display =
-    "none";
+  document.getElementById("pantallaInicio")
+    .style.display = "none";
 
   let pantalla =
     document.getElementById("pantallaInstrucciones");
@@ -119,6 +143,7 @@ function mostrarInstrucciones() {
     document.getElementsByClassName("instruccion");
 
   for (let i = 0; i < frases.length; i++) {
+
     frases[i].style.opacity = 0;
   }
 
@@ -143,7 +168,8 @@ function mostrarSiguienteFrase() {
     let boton =
       document.getElementById("botonSiguiente");
 
-    boton.innerHTML = "Comenzar Juego";
+    boton.innerHTML =
+      "Comenzar Juego";
 
     boton.onclick = empezarJuego;
   }
@@ -155,11 +181,11 @@ function mostrarSiguienteFrase() {
 
 function empezarJuego() {
 
-  document.getElementById("pantallaInstrucciones").style.display =
-    "none";
+  document.getElementById("pantallaInstrucciones")
+    .style.display = "none";
 
-  document.getElementById("Pasajero").style.display =
-    "flex";
+  document.getElementById("Pasajero")
+    .style.display = "flex";
 
   mostrarPasajero();
 }
@@ -221,6 +247,7 @@ let pasajeros = [
 ];
 
 let fotosAleatorias = [
+
   "assets/pasaporte/opcion1.png",
   "assets/pasaporte/opcion2.png"
 ];
@@ -228,13 +255,10 @@ let fotosAleatorias = [
 let pasajeroActual = 0;
 
 // ============================
-// NUEVAS VARIABLES
+// VARIABLES VALIDACION
 // ============================
 
 let datosCorrectos = false;
-
-let pasajeroMostrado;
-let pasaporteMostrado;
 
 // ============================
 // MOSTRAR PASAJERO
@@ -242,57 +266,80 @@ let pasaporteMostrado;
 
 function mostrarPasajero() {
 
-  let p = pasajeros[pasajeroActual];
+  let p =
+    pasajeros[pasajeroActual];
 
-  let pasaporte = generarPasaporte(p);
+  let pasaporte =
+    generarPasaporte(p);
 
-  let tarjeta = generarTarjeta(p);
+  let tarjeta =
+    generarTarjeta(p);
 
-  // GUARDAR DATOS
-  pasajeroMostrado = p;
-  pasaporteMostrado = pasaporte;
+  // ============================
+  // VALIDAR DATOS
+  // ============================
 
-  // COMPROBAR DATOS
   datosCorrectos =
+
     p.nombre === pasaporte.nombre &&
     p.edad === pasaporte.edad &&
-    p.pais === pasaporte.pais;
+    p.pais === pasaporte.pais &&
+    p.imagen === pasaporte.imagen &&
+    p.nombre === tarjeta.nombre;
 
+  // ============================
   // PERSONA
-  document.getElementById("fotoPasajero").src =
-    p.imagen;
+  // ============================
 
-  document.getElementById("nombre").innerHTML =
-    "Nombre: " + p.nombre;
+  document.getElementById("fotoPasajero")
+    .src = p.imagen;
 
-  document.getElementById("pais").innerHTML =
-    "País: " + p.pais;
+  document.getElementById("nombre")
+    .innerHTML =
+      "Nombre: " + p.nombre;
 
-  document.getElementById("edad").innerHTML =
-    "Edad: " + p.edad;
+  document.getElementById("pais")
+    .innerHTML =
+      "País: " + p.pais;
 
+  document.getElementById("edad")
+    .innerHTML =
+      "Edad: " + p.edad;
+
+  // ============================
   // PASAPORTE
-  document.getElementById("fotoPasaporte").src =
-    pasaporte.imagen;
+  // ============================
 
-  document.getElementById("pasaporteNombre").innerHTML =
-    "Nombre: " + pasaporte.nombre;
+  document.getElementById("fotoPasaporte")
+    .src = pasaporte.imagen;
 
-  document.getElementById("pasaportePais").innerHTML =
-    "País: " + pasaporte.pais;
+  document.getElementById("pasaporteNombre")
+    .innerHTML =
+      "Nombre: " + pasaporte.nombre;
 
-  document.getElementById("pasaporteEdad").innerHTML =
-    "Edad: " + pasaporte.edad;
+  document.getElementById("pasaportePais")
+    .innerHTML =
+      "País: " + pasaporte.pais;
 
+  document.getElementById("pasaporteEdad")
+    .innerHTML =
+      "Edad: " + pasaporte.edad;
+
+  // ============================
   // TARJETA
-  document.getElementById("tarjetaNombre").innerHTML =
-    "Nombre: " + tarjeta.nombre;
+  // ============================
 
-  document.getElementById("tarjetaVuelo").innerHTML =
-    "Vuelo: " + tarjeta.vuelo;
+  document.getElementById("tarjetaNombre")
+    .innerHTML =
+      "Nombre: " + tarjeta.nombre;
 
-  document.getElementById("tarjetaAsiento").innerHTML =
-    "Asiento: " + tarjeta.asiento;
+  document.getElementById("tarjetaVuelo")
+    .innerHTML =
+      "Vuelo: " + tarjeta.vuelo;
+
+  document.getElementById("tarjetaAsiento")
+    .innerHTML =
+      "Asiento: " + tarjeta.asiento;
 }
 
 // ============================
@@ -301,25 +348,38 @@ function mostrarPasajero() {
 
 function generarPasaporte(p) {
 
-  let falso = Math.random() < 0.35;
+  // 35% error
+  let falso =
+    Math.random() < 0.35;
 
-  let fotoFinal = p.imagen;
+  let fotoFinal =
+    p.imagen;
 
+  // 20% foto falsa
   if (Math.random() < 0.2) {
 
     fotoFinal =
       fotosAleatorias[
-        Math.floor(Math.random() * fotosAleatorias.length)
+        Math.floor(
+          Math.random() *
+          fotosAleatorias.length
+        )
       ];
   }
 
-  let nombreFinal = p.nombre;
-  let edadFinal = p.edad;
-  let paisFinal = p.pais;
+  let nombreFinal =
+    p.nombre;
+
+  let edadFinal =
+    p.edad;
+
+  let paisFinal =
+    p.pais;
 
   if (falso) {
 
     let nombresFalsos = [
+
       "Luis Mendoza",
       "Carlos Ruiz",
       "John Smith",
@@ -328,6 +388,7 @@ function generarPasaporte(p) {
     ];
 
     let paisesFalsos = [
+
       "Rusia",
       "Brasil",
       "Canadá",
@@ -338,31 +399,48 @@ function generarPasaporte(p) {
     let tipoFallo =
       Math.floor(Math.random() * 3);
 
+    // NOMBRE FALSO
     if (tipoFallo === 0) {
 
       nombreFinal =
         nombresFalsos[
-          Math.floor(Math.random() * nombresFalsos.length)
+          Math.floor(
+            Math.random() *
+            nombresFalsos.length
+          )
         ];
+    }
 
-    } else if (tipoFallo === 1) {
+    // EDAD FALSA
+    else if (tipoFallo === 1) {
 
       edadFinal =
-        p.edad + Math.floor(Math.random() * 8) + 1;
+        p.edad +
+        Math.floor(Math.random() * 8) +
+        1;
+    }
 
-    } else {
+    // PAIS FALSO
+    else {
 
       paisFinal =
         paisesFalsos[
-          Math.floor(Math.random() * paisesFalsos.length)
+          Math.floor(
+            Math.random() *
+            paisesFalsos.length
+          )
         ];
     }
   }
 
   return {
+
     nombre: nombreFinal,
+
     pais: paisFinal,
+
     edad: edadFinal,
+
     imagen: fotoFinal
   };
 }
@@ -374,6 +452,7 @@ function generarPasaporte(p) {
 function generarTarjeta(p) {
 
   let vuelos = [
+
     "IB203",
     "FR221",
     "JK881",
@@ -381,24 +460,59 @@ function generarTarjeta(p) {
   ];
 
   let asientos = [
+
     "12A",
     "7C",
     "21F",
     "3B"
   ];
 
+  let nombresFalsos = [
+
+    "Luis Mendoza",
+    "Carlos Ruiz",
+    "John Smith",
+    "Ivan Petrov",
+    "Ali Hassan"
+  ];
+
+  // 25% error
+  let falso =
+    Math.random() < 0.25;
+
+  let nombreFinal =
+    p.nombre;
+
+  // NOMBRE FALSO
+  if (falso) {
+
+    nombreFinal =
+      nombresFalsos[
+        Math.floor(
+          Math.random() *
+          nombresFalsos.length
+        )
+      ];
+  }
+
   return {
 
-    nombre: p.nombre,
+    nombre: nombreFinal,
 
     vuelo:
       vuelos[
-        Math.floor(Math.random() * vuelos.length)
+        Math.floor(
+          Math.random() *
+          vuelos.length
+        )
       ],
 
     asiento:
       asientos[
-        Math.floor(Math.random() * asientos.length)
+        Math.floor(
+          Math.random() *
+          asientos.length
+        )
       ]
   };
 }
@@ -428,14 +542,16 @@ function mostrarDocumento(tipo) {
     document.getElementById("pasaporte")
       .classList.add("activo");
 
-    tabs[0].classList.add("activa");
+    tabs[0]
+      .classList.add("activa");
 
   } else {
 
     document.getElementById("tarjeta")
       .classList.add("activo");
 
-    tabs[1].classList.add("activa");
+    tabs[1]
+      .classList.add("activa");
   }
 }
 
@@ -447,7 +563,10 @@ function siguientePasajero() {
 
   pasajeroActual++;
 
-  if (pasajeroActual < pasajeros.length) {
+  if (
+    pasajeroActual <
+    pasajeros.length
+  ) {
 
     mostrarPasajero();
 
@@ -485,7 +604,10 @@ function aceptar() {
 
   actualizarPuntuacion();
 
-  setTimeout(siguientePasajero, 1000);
+  setTimeout(
+    siguientePasajero,
+    1000
+  );
 }
 
 function rechazar() {
@@ -505,7 +627,10 @@ function rechazar() {
 
   actualizarPuntuacion();
 
-  setTimeout(siguientePasajero, 1000);
+  setTimeout(
+    siguientePasajero,
+    1000
+  );
 }
 
 // ============================
@@ -514,8 +639,8 @@ function rechazar() {
 
 function actualizarPuntuacion() {
 
-  document.getElementById("puntuacion").innerHTML =
-    puntuacion;
+  document.getElementById("puntuacion")
+    .innerHTML = puntuacion;
 }
 
 // ============================
@@ -525,53 +650,49 @@ function actualizarPuntuacion() {
 function guardarRanking() {
 
   let ranking =
-    JSON.parse(localStorage.getItem("ranking")) || [];
+    JSON.parse(
+      localStorage.getItem("ranking")
+    ) || [];
 
   ranking.push({
     usuario: nombreUsuario,
     puntos: puntuacion
   });
-
   localStorage.setItem(
     "ranking",
     JSON.stringify(ranking)
   );
 }
-
-// ============================
 // SELLO
-// ============================
-
 function mostrarSello(texto) {
-
   let sello =
     document.getElementById("selloResultado");
-
   sello.innerHTML = texto;
-
   sello.classList.remove("mostrar");
-
   void sello.offsetWidth;
 
-  if (
-    texto === "APROBADO"
-  ) {
-
-    sello.style.borderColor = "#2ecc71";
-    sello.style.color = "#2ecc71";
-
-  } else if (
-    texto === "DENEGADO"
-  ) {
-
-    sello.style.borderColor = "#e74c3c";
-    sello.style.color = "#e74c3c";
-
-  } else {
-
-    sello.style.borderColor = "#f1c40f";
-    sello.style.color = "#f1c40f";
+  // APROBADO
+  if (texto === "APROBADO") {
+    sello.style.borderColor =
+      "#2ecc71";
+    sello.style.color =
+      "#2ecc71";
   }
 
+  // DENEGADO
+  else if (texto === "DENEGADO") {
+    sello.style.borderColor =
+      "#e74c3c";
+    sello.style.color =
+      "#e74c3c";
+  }
+  // ERROR
+  else {
+    sello.style.borderColor =
+      "#f1c40f";
+
+    sello.style.color =
+      "#f1c40f";
+  }
   sello.classList.add("mostrar");
 }
