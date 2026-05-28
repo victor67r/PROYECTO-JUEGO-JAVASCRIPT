@@ -147,10 +147,9 @@ let pasajeros = [
 ];
 
 let fotosAleatorias = [
-  "assets/fotos_extra/foto1.png",
-  "assets/fotos_extra/foto2.png",
-  "assets/fotos_extra/foto3.png",
-  "assets/fotos_extra/foto4.png"
+  "assets/pasaporte/opcion1.png",
+  "assets/pasaporte/opcion2.png"
+  
 ];
 
 let pasajeroActual = 0;
