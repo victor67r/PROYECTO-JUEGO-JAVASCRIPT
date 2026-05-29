@@ -1,107 +1,487 @@
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
   font-family: Arial, sans-serif;
+  background:#2f241d;
+  overflow:hidden;
 }
 
-#pantallaInicio {
-  height: 100vh;
-  width: 100vw;
-  background-image: url("../assets/portada/portada33.png");
-  background-size: cover;
-  background-position: center;
+/* =========================
+PANTALLA INICIO
+========================= */
 
-  display: flex;
+#pantallaInicio{
+  height:100vh;
+  width:100vw;
+
+  background-image:url("../assets/portada/portada33.png");
+  background-size:cover;
+  background-position:center;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:15px;
+}
+
+#botonEmpezar{
+  padding:20px 40px;
+  font-size:28px;
+
+  border:none;
+  border-radius:10px;
+
+  background:#2e2a27;
+  color:#f2e3c6;
+
+  cursor:pointer;
+
+  box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+#botonRankingInicio{
+  padding:15px 30px;
+  font-size:20px;
+
+  border:none;
+  border-radius:10px;
+
+  background:#5c4033;
+  color:#f2e3c6;
+
+  cursor:pointer;
+}
+
+/* =========================
+RANKING INICIO (CORREGIDO)
+========================= */
+
+#rankingInicioPantalla{
+  background:rgba(0,0,0,0.7);
+
+  padding:15px;
+
+  border-radius:10px;
+
+  color:#f2e3c6;
+
+  width:250px;
+
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+#listaRankingInicio{
+  list-style:none;
+  padding:0;
+  margin:0;
+
+  max-height:160px;
+  overflow-y:auto;
+}
+
+#listaRankingInicio li{
+  font-size:14px;
+  margin:5px 0;
+}
+
+/* BOTÓN BORRAR RANKING (VISIBLE Y ROJO) */
+#botonBorrarRanking{
+  padding:10px;
+  border:none;
+  border-radius:8px;
+
+  background:#c0392b;
+  color:white;
+
+  cursor:pointer;
+
+  font-weight:bold;
+}
+
+#botonBorrarRanking:hover{
+  background:#e74c3c;
+}
+
+/* BOTÓN MÚSICA */
+
+#botonMusica{
+  position:absolute;
+  bottom:20px;
+  right:20px;
+
+  font-size:22px;
+
+  padding:10px 15px;
+
+  border:none;
+  border-radius:10px;
+
+  background:#2e2a27;
+  color:white;
+
+  cursor:pointer;
+}
+
+/* =========================
+MODAL USUARIO
+========================= */
+
+#modalUsuario{
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,0.8);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  z-index:100;
+}
+
+.modal-contenido{
+  background:#d8c3a5;
+
+  padding:40px;
+
+  border-radius:10px;
+
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+
+  width:300px;
+}
+
+.modal-contenido input{
+  padding:12px;
+  font-size:18px;
+}
+
+.modal-contenido button{
+  padding:12px;
+  border:none;
+  background:#5c4033;
+  color:white;
+  cursor:pointer;
+}
+
+/* =========================
+INSTRUCCIONES
+========================= */
+
+#pantallaInstrucciones{
+  height:100vh;
+
+  background:#1c1b1a;
+  color:#f3e7d3;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+
+  padding:40px;
+}
+
+.instruccion{
+  opacity:0;
+  transition:0.5s;
+  margin:10px;
+  max-width:700px;
+}
+
+#botonSiguiente{
+  margin-top:30px;
+
+  padding:15px 30px;
+
+  border:none;
+  border-radius:8px;
+
+  background:#5c4033;
+  color:white;
+
+  cursor:pointer;
+}
+
+/* =========================
+JUEGO
+========================= */
+
+#Pasajero{
+  height:100vh;
+
+  display:flex;
+  flex-direction:column;
+
+  background:#4a3a2f;
+}
+
+/* HUD */
+
+#hudSuperior{
+  height:70px;
+
+  background:#2b211b;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 30px;
+
+  border-bottom:4px solid #1b1410;
+}
+
+.hudCaja{
+  display:flex;
+  flex-direction:column;
+  color:#f2e3c6;
+}
+
+.hudTitulo{
+  font-size:12px;
+  opacity:0.7;
+}
+
+/* PASAJERO */
+
+#zonaPersona{
+  position:absolute;
+  left:40px;
+  top:120px;
+
+  width:250px;
+
+  color:#f2e3c6;
+}
+
+#fotoPasajero{
+  width:230px;
+  border:5px solid #2b211b;
+  border-radius:8px;
+  margin:20px 0;
+}
+
+/* DOCUMENTOS */
+
+#zonaDocumentos{
+  margin:auto;
+  width:600px;
+}
+
+#tabsDocumentos{
+  display:flex;
+  gap:5px;
+}
+
+.tab{
+  padding:12px 20px;
+
+  border:none;
+
+  background:#8b6b4a;
+  color:#f3e7d3;
+
+  cursor:pointer;
+
+  border-radius:8px 8px 0 0;
+}
+
+.tab.activa{
+  background:#d8c3a5;
+  color:black;
+}
+
+#contenedorDocumentos{
+  background:#d8c3a5;
+
+  padding:25px;
+
+  border-radius:0 10px 10px 10px;
+
+  min-height:260px;
+
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+.documento{
+  display:none;
+}
+
+.documento.activo{
+  display:block;
+}
+
+.documentoHeader{
+  background:#5c4033;
+
+  color:white;
+
+  padding:10px;
+
+  text-align:center;
+
+  font-weight:bold;
+
+  margin-bottom:20px;
+
+  border-radius:5px;
+}
+
+.documentoContenido p{
+  margin:15px 0;
+  font-size:20px;
+  color:#2b211b;
+}
+
+.fotoDocumento{
+  width:120px;
+
+  border:3px solid #5c4033;
+
+  border-radius:5px;
+
+  margin-bottom:20px;
+}
+
+/* BOTONES */
+
+#botonesDecision{
+  position:absolute;
+  bottom:40px;
+
+  width:100%;
+
+  display:flex;
+  justify-content:center;
+  gap:30px;
+}
+
+.btnAceptar,
+.btnRechazar{
+  padding:18px 40px;
+
+  border:none;
+  border-radius:8px;
+
+  font-size:20px;
+
+  cursor:pointer;
+
+  background:#2b211b;
+  color:#f3e7d3;
+
+  transition:0.2s;
+}
+
+.btnAceptar:hover,
+.btnRechazar:hover{
+  transform:scale(1.05);
+}
+
+/* SELLO */
+
+#selloResultado{
+  position:absolute;
+
+  top:50%;
+  left:50%;
+
+  transform:translate(-50%, -50%) rotate(-15deg);
+
+  padding:30px 60px;
+
+  border:8px solid;
+
+  font-size:55px;
+  font-weight:bold;
+
+  opacity:0;
+
+  pointer-events:none;
+}
+
+.mostrar{
+  animation:selloAnimacion 1s ease;
+}
+
+@keyframes selloAnimacion{
+
+  0%{
+    opacity:0;
+    transform:translate(-50%, -50%) scale(0.5) rotate(-15deg);
+  }
+
+  30%{
+    opacity:1;
+    transform:translate(-50%, -50%) scale(1.2) rotate(-15deg);
+  }
+
+  100%{
+    opacity:0;
+    transform:translate(-50%, -50%) scale(1) rotate(-15deg);
+  }
+}
+
+
+#logroMaximo{
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,0.7);
+
+  display: none;
+
   justify-content: center;
   align-items: center;
+
+  z-index: 9999;
 }
 
-#botonEmpezar {
-  padding: 20px 40px;
-  font-size: 24px;
-  background-color: rgba(0,0,0,0.7);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
+.contenidoLogro{
+  width: 320px;
 
-#botonEmpezar:hover {
-  background-color: rgba(0,0,0,0.9);
-}
-
-#botonMusica {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  font-size: 22px;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 8px;
-  background-color: rgba(0,0,0,0.6);
+  background: #2b211b;
   color: white;
 
-  cursor: pointer;
-}
+  padding: 20px;
+  border-radius: 15px;
 
-.instruccion {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  max-width: 600px;
-  margin: 10px auto;
   text-align: center;
+
+  animation: aparecerLogro 0.4s ease;
+}
+.contenidoLogro h1{
+  margin: 0;
+  margin-bottom: 10px;
+
+  font-size: 28px;
+  font-weight: bold;
+
+  text-align: center;
+
+  width: 100%;
+  display: block;
 }
 
-#pantallaInstrucciones {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  background-color: #111;
-  color: white;
-  padding: 40px;
-  box-sizing: border-box;
+#imagenLogro{
+  width: 140px;
+  margin: 15px 0;
 }
 
-
-#pantallaInstrucciones p {
-  margin: 10px auto;   
-  max-width: 600px;   
-  font-size: 18px;
-}
-
-#pantallaInstrucciones ul {
-  list-style: none;
-  padding: 0;
-  margin: 10px auto;  
-  max-width: 600px;
-}
-
-#pantallaInstrucciones li {
-  margin: 8px 0;
-  font-size: 20px;
-}
-
-#pantallaInstrucciones button {
-  margin-top: 30px;
-  padding: 15px 30px;
-  font-size: 20px;
-  border: none;
-  border-radius: 8px;
-  background-color: #2c7;
-  color: black;
-  cursor: pointer;
-}
-
-#pantallaInstrucciones button:hover {
-  background-color: #1a5;
-}
-
-#pantallaJuego {
-  height: 100vh;
-  width: 100vw;
-  background-color: #222;
+#logroMaximo div{
+  background:#2b211b;
+  padding:40px;
+  border-radius:10px;
 }

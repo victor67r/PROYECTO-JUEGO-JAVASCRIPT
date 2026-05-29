@@ -1,41 +1,186 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JUEGO</title>
-    <script src="scripts/juego.js" defer></script>
-    <link rel="stylesheet" href="styles/juego.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control de Aduanas</title>
+
+  <script src="scripts/juego.js" defer></script>
+  <link rel="stylesheet" href="styles/juego.css">
 </head>
 <body>
-    
+
+<!-- PANTALLA INICIO -->
 <div id="pantallaInicio">
-  <button id="botonEmpezar" onclick="mostrarInstrucciones()">Empezar Partida</button>
+
+  <button id="botonEmpezar" onclick="mostrarModalUsuario()">
+    Empezar Partida
+  </button>
+
+  <button id="botonRankingInicio" onclick="toggleRankingInicio()">
+    🏆 VER RANKING
+  </button>
+
+  <!-- PANEL RANKING -->
+  <div id="rankingInicioPantalla" style="display:none;">
+
+    <ul id="listaRankingInicio"></ul>
+
+    <button id="botonBorrarRanking" onclick="borrarRanking()">
+      🗑️ Borrar ranking
+    </button>
+
+  </div>
+
   <button id="botonMusica" onclick="toggleMusica()">🔊</button>
-  <audio id="musicaFondo" src="musica/inicio/Level_One_Arrival.mp3" loop autoplay></audio>
+
+  <audio id="musicaFondo"
+         src="musica/inicio/Level_One_Arrival.mp3"
+         loop
+         autoplay>
+  </audio>
+
 </div>
 
+<!-- MODAL USUARIO -->
+<div id="modalUsuario" style="display:none;">
+  <div class="modal-contenido">
+
+    <h2>IDENTIFICACIÓN DEL AGENTE</h2>
+
+    <input type="text" id="inputUsuario" maxlength="15" placeholder="Introduce tu nombre">
+
+    <button onclick="guardarUsuario()">Continuar</button>
+
+  </div>
+</div>
+
+<!-- INSTRUCCIONES -->
 <div id="pantallaInstrucciones" style="display:none;">
+
   <h1 class="instruccion">BIENVENIDO, OFICIAL</h1>
 
   <p class="instruccion">Has sido asignado al control de embarque del aeropuerto internacional de Sanchonia.</p>
 
-  <p class="instruccion">Tu trabajo es revisar cuidadosamente los documentos de los pasajeros antes de permitirles subir al avión.</p>
+  <p class="instruccion">Tu trabajo es revisar cuidadosamente los documentos de los pasajeros.</p>
 
   <p class="instruccion">Cada pasajero presentará:</p>
+
   <ul class="instruccion">
     <li>Pasaporte</li>
     <li>Tarjeta de embarque</li>
-    <li>Equipaje</li>
   </ul>
 
-  <p class="instruccion">Debes comprobar que todos los documentos sean válidos y que no lleven objetos prohibidos.</p>
+  <p class="instruccion">Comprueba que todos los datos coincidan.</p>
 
-  <p class="instruccion">Si todo está correcto, permite el embarque.<br>Si encuentras algún problema, deniega la entrada.</p>
+  <p class="instruccion"><strong>El futuro del país está en tus manos.</strong></p>
 
-  <p class="instruccion"><strong>Recuerda: un error puede tener consecuencias. No queremos dejar pasar a chusma. El futuro del país está en tus manos.</strong></p>
+  <button id="botonSiguiente" onclick="mostrarSiguienteFrase()">
+    Siguiente
+  </button>
 
-  <button id="botonSiguiente" onclick="mostrarSiguienteFrase()">Siguiente</button>
+</div>
+
+<!-- JUEGO -->
+<div id="Pasajero" style="display:none;">
+
+  <div id="hudSuperior">
+
+    <div class="hudCaja">
+      <span class="hudTitulo">AGENTE</span>
+      <span id="hudUsuario">-</span>
+    </div>
+
+    <div class="hudCaja">
+      <span class="hudTitulo">PUNTOS</span>
+      <span id="puntuacion">0</span>
+    </div>
+
+  </div>
+
+  <div id="zonaPersona">
+
+    <h2>Pasajero</h2>
+
+    <img id="fotoPasajero">
+
+    <div id="datosPersona">
+      <p id="nombre"></p>
+      <p id="pais"></p>
+      <p id="edad"></p>
+    </div>
+
+  </div>
+
+  <div id="zonaDocumentos">
+
+    <div id="tabsDocumentos">
+
+      <button class="tab activa" onclick="mostrarDocumento('pasaporte')">
+        PASAPORTE
+      </button>
+
+      <button class="tab" onclick="mostrarDocumento('tarjeta')">
+        TARJETA
+      </button>
+
+    </div>
+
+    <div id="contenedorDocumentos">
+
+      <div id="pasaporte" class="documento activo">
+
+        <div class="documentoHeader">REPÚBLICA DE SANCHONIA</div>
+
+        <img id="fotoPasaporte" class="fotoDocumento">
+
+        <div class="documentoContenido">
+          <p id="pasaporteNombre"></p>
+          <p id="pasaportePais"></p>
+          <p id="pasaporteEdad"></p>
+        </div>
+
+      </div>
+
+      <div id="tarjeta" class="documento">
+
+        <div class="documentoHeader">TARJETA DE EMBARQUE</div>
+
+        <div class="documentoContenido">
+          <p id="tarjetaNombre"></p>
+          <p id="tarjetaVuelo"></p>
+          <p id="tarjetaAsiento"></p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="botonesDecision">
+
+    <button class="btnAceptar" onclick="aceptar()">ACEPTAR</button>
+    <button class="btnRechazar" onclick="rechazar()">RECHAZAR</button>
+
+  </div>
+
+  <div id="selloResultado"></div>
+
+</div>
+
+<div id="logroMaximo" style="display:none;">
+  <div class="contenidoLogro">
+
+    <h1>🏆 LOGRO DESBLOQUEADO</h1>
+
+    <img id="imagenLogro" src="assets/logros/imagen_circular_recortada.png">
+
+    <p>Perfecto: ERES RACISTA CERTIFICADO</p>
+
+    <button onclick="cerrarLogro()">Cerrar</button>
+
+  </div>
 </div>
 
 </body>
