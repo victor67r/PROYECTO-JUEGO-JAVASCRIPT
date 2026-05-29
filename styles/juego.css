@@ -466,3 +466,48 @@ SELLO
     transform:translate(-50%, -50%) scale(1) rotate(-15deg);
   }
 }
+
+#logroMaximo{
+  position: fixed;
+  inset: 0;
+
+  display: none;
+
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0,0,0,0.75);
+
+  z-index: 9999;
+}
+.contenidoLogro{
+  width: 300px;
+  max-width: 90vw;
+
+  background: #2b211b;
+  color: white;
+
+  padding: 18px;
+  border-radius: 15px;
+
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 10px;
+}
+#imagenLogro{
+  width: 200px;
+  height: auto;
+
+  object-fit: contain;
+
+  margin: 10px 0;
+}
+
+@keyframes pop {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
