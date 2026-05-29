@@ -287,10 +287,8 @@ function mostrarPasajero() {
 
   let p =
     pasajeros[pasajeroActual];
-
   let pasaporte =
     generarPasaporte(p);
-
   let tarjeta =
     generarTarjeta(p);
 
@@ -312,15 +310,12 @@ function mostrarPasajero() {
 
   document.getElementById("fotoPasajero")
     .src = p.imagen;
-
   document.getElementById("nombre")
     .innerHTML =
       "Nombre: " + p.nombre;
-
   document.getElementById("pais")
     .innerHTML =
       "País: " + p.pais;
-
   document.getElementById("edad")
     .innerHTML =
       "Edad: " + p.edad;
@@ -331,7 +326,6 @@ function mostrarPasajero() {
 
   document.getElementById("fotoPasaporte")
     .src = pasaporte.imagen;
-
   document.getElementById("pasaporteNombre")
     .innerHTML =
       "Nombre: " + pasaporte.nombre;
@@ -339,7 +333,6 @@ function mostrarPasajero() {
   document.getElementById("pasaportePais")
     .innerHTML =
       "País: " + pasaporte.pais;
-
   document.getElementById("pasaporteEdad")
     .innerHTML =
       "Edad: " + pasaporte.edad;
@@ -351,11 +344,9 @@ function mostrarPasajero() {
   document.getElementById("tarjetaNombre")
     .innerHTML =
       "Nombre: " + tarjeta.nombre;
-
   document.getElementById("tarjetaVuelo")
     .innerHTML =
       "Vuelo: " + tarjeta.vuelo;
-
   document.getElementById("tarjetaAsiento")
     .innerHTML =
       "Asiento: " + tarjeta.asiento;
@@ -388,17 +379,14 @@ function generarPasaporte(p) {
 
   let nombreFinal =
     p.nombre;
-
   let edadFinal =
     p.edad;
-
   let paisFinal =
     p.pais;
 
   if (falso) {
 
     let nombresFalsos = [
-
       "Luis Mendoza",
       "Carlos Ruiz",
       "John Smith",
@@ -407,7 +395,6 @@ function generarPasaporte(p) {
     ];
 
     let paisesFalsos = [
-
       "Rusia",
       "Brasil",
       "Canadá",
@@ -420,7 +407,6 @@ function generarPasaporte(p) {
 
     // NOMBRE FALSO
     if (tipoFallo === 0) {
-
       nombreFinal =
         nombresFalsos[
           Math.floor(
@@ -432,7 +418,6 @@ function generarPasaporte(p) {
 
     // EDAD FALSA
     else if (tipoFallo === 1) {
-
       edadFinal =
         p.edad +
         Math.floor(Math.random() * 8) +
@@ -455,11 +440,8 @@ function generarPasaporte(p) {
   return {
 
     nombre: nombreFinal,
-
     pais: paisFinal,
-
     edad: edadFinal,
-
     imagen: fotoFinal
   };
 }
@@ -544,7 +526,6 @@ function mostrarDocumento(tipo) {
 
   let docs =
     document.querySelectorAll(".documento");
-
   let tabs =
     document.querySelectorAll(".tab");
 
@@ -586,24 +567,20 @@ function siguientePasajero() {
     pasajeroActual <
     pasajeros.length
   ) {
-
     mostrarPasajero();
 
   } else {
-
     guardarRanking();
 
 // 👇 NUEVO LOGRO
 comprobarLogroMaximo();
 
 setTimeout(() => {
-
   alert(
     "Fin de la cola\n\nPuntuación final: " + puntuacion
   );
 
   location.reload();
-
 }, 1500);
   }
 }
@@ -618,7 +595,6 @@ function aceptar() {
     puntuacion += 10;
     mostrarSello("APROBADO");
   } else {
-
     puntuacion -= 10;
     mostrarSello("ERROR");
   }
@@ -634,14 +610,12 @@ function rechazar() {
   if (!datosCorrectos) {
     puntuacion += 10;
     mostrarSello("DENEGADO");
-
   } else {
     puntuacion -= 10;
     mostrarSello("ERROR");
   }
 
   actualizarPuntuacion();
-
   setTimeout(
     siguientePasajero,
     1000
@@ -662,7 +636,6 @@ function actualizarPuntuacion() {
 // ============================
 
 function guardarRanking() {
-
   let ranking =
     JSON.parse(
       localStorage.getItem("ranking")
@@ -704,7 +677,6 @@ function mostrarSello(texto) {
   else {
     sello.style.borderColor =
       "#f1c40f";
-
     sello.style.color =
       "#f1c40f";
   }
@@ -729,11 +701,8 @@ function borrarRanking() {
 function comprobarLogroMaximo() {
 
   const maximo = pasajeros.length * 10;
-
   if (puntuacion >= maximo) {
-
     logroMostrado = true;
-
     document.getElementById("logroMaximo").style.display = "flex";
   }
 }
