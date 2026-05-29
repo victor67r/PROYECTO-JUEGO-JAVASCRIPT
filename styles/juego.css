@@ -58,7 +58,7 @@ PANTALLA INICIO
 }
 
 /* =========================
-RANKING INICIO (CORREGIDO)
+RANKING INICIO
 ========================= */
 
 #rankingInicioPantalla{
@@ -91,7 +91,6 @@ RANKING INICIO (CORREGIDO)
   margin:5px 0;
 }
 
-/* BOTÓN BORRAR RANKING (VISIBLE Y ROJO) */
 #botonBorrarRanking{
   padding:10px;
   border:none;
@@ -109,7 +108,9 @@ RANKING INICIO (CORREGIDO)
   background:#e74c3c;
 }
 
-/* BOTÓN MÚSICA */
+/* =========================
+BOTÓN MÚSICA
+========================= */
 
 #botonMusica{
   position:absolute;
@@ -215,19 +216,41 @@ INSTRUCCIONES
 }
 
 /* =========================
-JUEGO
+JUEGO (FONDO NUEVO AQUÍ)
 ========================= */
 
-#Pasajero{
+.pantallaJuego{
   height:100vh;
 
   display:flex;
   flex-direction:column;
 
-  background:#4a3a2f;
+  background-image:url("../assets/fondos/aeropuerto.jpg"); /* 👈 TU IMAGEN */
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+
+  position:relative;
 }
 
-/* HUD */
+/* oscurecer fondo para legibilidad */
+.pantallaJuego::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.35);
+  z-index:0;
+}
+
+/* todo encima del overlay */
+.pantallaJuego > *{
+  position:relative;
+  z-index:1;
+}
+
+/* =========================
+HUD
+========================= */
 
 #hudSuperior{
   height:70px;
@@ -254,7 +277,36 @@ JUEGO
   opacity:0.7;
 }
 
-/* PASAJERO */
+
+#tarjetaPasajero{
+   background: rgba(20, 20, 20, 0.65); 
+  padding: 15px;
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  backdrop-filter: blur(4px); 
+}
+
+#tarjetaPasajero #fotoPasajero{
+  width: 230px;
+  border: 4px solid #2b211b;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+
+#tarjetaPasajero #datosPersona p{
+  margin: 6px 0;
+  color: #f2e3c6;
+  font-size: 18px;
+}
+
+#Pasajero{
+  background-image: url("../assets/portada/portadapasajero.png");
+}
 
 #zonaPersona{
   position:absolute;
@@ -273,7 +325,6 @@ JUEGO
   margin:20px 0;
 }
 
-/* DOCUMENTOS */
 
 #zonaDocumentos{
   margin:auto;
@@ -287,14 +338,10 @@ JUEGO
 
 .tab{
   padding:12px 20px;
-
   border:none;
-
   background:#8b6b4a;
   color:#f3e7d3;
-
   cursor:pointer;
-
   border-radius:8px 8px 0 0;
 }
 
@@ -305,37 +352,26 @@ JUEGO
 
 #contenedorDocumentos{
   background:#d8c3a5;
-
   padding:25px;
-
   border-radius:0 10px 10px 10px;
-
   min-height:260px;
-
   box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
 .documento{
   display:none;
 }
-
 .documento.activo{
   display:block;
 }
 
 .documentoHeader{
   background:#5c4033;
-
   color:white;
-
   padding:10px;
-
   text-align:center;
-
   font-weight:bold;
-
   margin-bottom:20px;
-
   border-radius:5px;
 }
 
@@ -349,13 +385,9 @@ JUEGO
   width:120px;
 
   border:3px solid #5c4033;
-
   border-radius:5px;
-
   margin-bottom:20px;
 }
-
-/* BOTONES */
 
 #botonesDecision{
   position:absolute;
@@ -390,7 +422,9 @@ JUEGO
   transform:scale(1.05);
 }
 
-/* SELLO */
+/* =========================
+SELLO
+========================= */
 
 #selloResultado{
   position:absolute;
@@ -417,7 +451,6 @@ JUEGO
 }
 
 @keyframes selloAnimacion{
-
   0%{
     opacity:0;
     transform:translate(-50%, -50%) scale(0.5) rotate(-15deg);
@@ -432,56 +465,4 @@ JUEGO
     opacity:0;
     transform:translate(-50%, -50%) scale(1) rotate(-15deg);
   }
-}
-
-
-#logroMaximo{
-  position: fixed;
-  inset: 0;
-
-  background: rgba(0,0,0,0.7);
-
-  display: none;
-
-  justify-content: center;
-  align-items: center;
-
-  z-index: 9999;
-}
-
-.contenidoLogro{
-  width: 320px;
-
-  background: #2b211b;
-  color: white;
-
-  padding: 20px;
-  border-radius: 15px;
-
-  text-align: center;
-
-  animation: aparecerLogro 0.4s ease;
-}
-.contenidoLogro h1{
-  margin: 0;
-  margin-bottom: 10px;
-
-  font-size: 28px;
-  font-weight: bold;
-
-  text-align: center;
-
-  width: 100%;
-  display: block;
-}
-
-#imagenLogro{
-  width: 140px;
-  margin: 15px 0;
-}
-
-#logroMaximo div{
-  background:#2b211b;
-  padding:40px;
-  border-radius:10px;
 }

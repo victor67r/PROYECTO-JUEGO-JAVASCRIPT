@@ -21,15 +21,12 @@
     🏆 VER RANKING
   </button>
 
-  <!-- PANEL RANKING -->
   <div id="rankingInicioPantalla" style="display:none;">
-
     <ul id="listaRankingInicio"></ul>
 
     <button id="botonBorrarRanking" onclick="borrarRanking()">
       🗑️ Borrar ranking
     </button>
-
   </div>
 
   <button id="botonMusica" onclick="toggleMusica()">🔊</button>
@@ -57,35 +54,19 @@
 
 <!-- INSTRUCCIONES -->
 <div id="pantallaInstrucciones" style="display:none;">
-
   <h1 class="instruccion">BIENVENIDO, OFICIAL</h1>
-
-  <p class="instruccion">Has sido asignado al control de embarque del aeropuerto internacional de Sanchonia.</p>
-
-  <p class="instruccion">Tu trabajo es revisar cuidadosamente los documentos de los pasajeros.</p>
-
-  <p class="instruccion">Cada pasajero presentará:</p>
-
-  <ul class="instruccion">
-    <li>Pasaporte</li>
-    <li>Tarjeta de embarque</li>
-  </ul>
-
-  <p class="instruccion">Comprueba que todos los datos coincidan.</p>
-
-  <p class="instruccion"><strong>El futuro del país está en tus manos.</strong></p>
+  <p class="instruccion">Has sido asignado al control de embarque...</p>
+  <p class="instruccion">Tu trabajo es revisar documentos.</p>
 
   <button id="botonSiguiente" onclick="mostrarSiguienteFrase()">
     Siguiente
   </button>
-
 </div>
 
 <!-- JUEGO -->
-<div id="Pasajero" style="display:none;">
+<div id="Pasajero" class="pantallaJuego" style="display:none;">
 
   <div id="hudSuperior">
-
     <div class="hudCaja">
       <span class="hudTitulo">AGENTE</span>
       <span id="hudUsuario">-</span>
@@ -95,12 +76,14 @@
       <span class="hudTitulo">PUNTOS</span>
       <span id="puntuacion">0</span>
     </div>
-
   </div>
 
   <div id="zonaPersona">
 
-    <h2>Pasajero</h2>
+  <h2>Pasajero</h2>
+
+  <!-- 👇 NUEVO CONTENEDOR -->
+  <div id="tarjetaPasajero">
 
     <img id="fotoPasajero">
 
@@ -112,46 +95,34 @@
 
   </div>
 
+</div>
+
   <div id="zonaDocumentos">
 
     <div id="tabsDocumentos">
-
-      <button class="tab activa" onclick="mostrarDocumento('pasaporte')">
-        PASAPORTE
-      </button>
-
-      <button class="tab" onclick="mostrarDocumento('tarjeta')">
-        TARJETA
-      </button>
-
+      <button class="tab activa" onclick="mostrarDocumento('pasaporte')">PASAPORTE</button>
+      <button class="tab" onclick="mostrarDocumento('tarjeta')">TARJETA</button>
     </div>
 
     <div id="contenedorDocumentos">
 
       <div id="pasaporte" class="documento activo">
-
         <div class="documentoHeader">REPÚBLICA DE SANCHONIA</div>
-
         <img id="fotoPasaporte" class="fotoDocumento">
-
         <div class="documentoContenido">
           <p id="pasaporteNombre"></p>
           <p id="pasaportePais"></p>
           <p id="pasaporteEdad"></p>
         </div>
-
       </div>
 
       <div id="tarjeta" class="documento">
-
         <div class="documentoHeader">TARJETA DE EMBARQUE</div>
-
         <div class="documentoContenido">
           <p id="tarjetaNombre"></p>
           <p id="tarjetaVuelo"></p>
           <p id="tarjetaAsiento"></p>
         </div>
-
       </div>
 
     </div>
@@ -159,28 +130,12 @@
   </div>
 
   <div id="botonesDecision">
-
     <button class="btnAceptar" onclick="aceptar()">ACEPTAR</button>
     <button class="btnRechazar" onclick="rechazar()">RECHAZAR</button>
-
   </div>
 
   <div id="selloResultado"></div>
 
-</div>
-
-<div id="logroMaximo" style="display:none;">
-  <div class="contenidoLogro">
-
-    <h1>🏆 LOGRO DESBLOQUEADO</h1>
-
-    <img id="imagenLogro" src="assets/logros/imagen_circular_recortada.png">
-
-    <p>Perfecto: ERES RACISTA CERTIFICADO</p>
-
-    <button onclick="cerrarLogro()">Cerrar</button>
-
-  </div>
 </div>
 
 </body>
