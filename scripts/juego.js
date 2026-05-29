@@ -615,20 +615,15 @@ setTimeout(() => {
 function aceptar() {
 
   if (datosCorrectos) {
-
     puntuacion += 10;
-
     mostrarSello("APROBADO");
-
   } else {
 
     puntuacion -= 10;
-
     mostrarSello("ERROR");
   }
 
   actualizarPuntuacion();
-
   setTimeout(
     siguientePasajero,
     1000
@@ -636,17 +631,12 @@ function aceptar() {
 }
 
 function rechazar() {
-
   if (!datosCorrectos) {
-
     puntuacion += 10;
-
     mostrarSello("DENEGADO");
 
   } else {
-
     puntuacion -= 10;
-
     mostrarSello("ERROR");
   }
 
@@ -663,7 +653,6 @@ function rechazar() {
 // ============================
 
 function actualizarPuntuacion() {
-
   document.getElementById("puntuacion")
     .innerHTML = puntuacion;
 }
