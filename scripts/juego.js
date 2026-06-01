@@ -251,7 +251,8 @@ let pasajeros = [
     pais: "Turquía",
     edad: 67,
     imagen: "assets/personajes/German.png"
-  }
+  },
+  
 ];
 
 let fotosAleatorias = [
@@ -378,15 +379,15 @@ document.getElementById("visadoValidez")
 
 function generarPasaporte(p) {
 
-  // 35% error
+  // 20% error
   let falso =
-    Math.random() < 0.35;
+    Math.random() < 0.20;
 
   let fotoFinal =
     p.imagen;
 
-  // 20% foto falsa
-  if (Math.random() < 0.2) {
+  // 15% foto falsa
+  if (Math.random() < 0.15) {
 
     fotoFinal =
       fotosAleatorias[
@@ -497,9 +498,9 @@ function generarTarjeta(p) {
     "Ali Hassan"
   ];
 
-  // 25% error
+  // 20% error
   let falso =
-    Math.random() < 0.25;
+    Math.random() < 0.20;
 
   let nombreFinal =
     p.nombre;
@@ -736,9 +737,9 @@ function generarVisado(p) {
   let nombreFinal = p.nombre;
 
   // ============================
-  // 75% correcto / 25% con error
+  // 80% correcto / 20% con error
   // ============================
-  let visadoCorrecto = Math.random() < 0.75;
+  let visadoCorrecto = Math.random() < 0.80;
 
   let añoValidez = 2026; 
 
