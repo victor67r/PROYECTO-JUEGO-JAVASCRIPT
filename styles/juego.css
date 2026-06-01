@@ -335,6 +335,9 @@ HUD
   display:flex;
   gap:5px;
 }
+#tabsDocumentos .tab{
+  flex:1;
+}
 
 .tab{
   padding:12px 20px;
@@ -510,4 +513,31 @@ SELLO
 @keyframes pop {
   from { transform: scale(0.5); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
+}
+
+/* =========================
+VISADO
+========================= */
+
+#visado{
+  display:none;
+}
+
+#visado.activo{
+  display:block;
+}
+
+#visado .documentoHeader{
+  background:#1f4e79;
+  color:white;
+}
+
+#visado .documentoContenido{
+  padding-top:10px;
+}
+
+#visado .documentoContenido p{
+  margin:15px 0;
+  font-size:20px;
+  color:#2b211b;
 }

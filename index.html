@@ -8,6 +8,7 @@
   <script src="scripts/juego.js" defer></script>
   <link rel="stylesheet" href="styles/juego.css">
 </head>
+
 <body>
 
 <!-- PANTALLA INICIO -->
@@ -56,7 +57,7 @@
 <div id="pantallaInstrucciones" style="display:none;">
   <h1 class="instruccion">BIENVENIDO, OFICIAL</h1>
   <p class="instruccion">Has sido asignado al control de embarque...</p>
-  <p class="instruccion">Tu trabajo es revisar documentos.</p>  
+  <p class="instruccion">Tu trabajo es revisar documentos.</p>
   <p class="instruccion">Tu misión es verificar la identidad de todos los pasajeros antes de permitirles el acceso al vuelo.</p>
   <p class="instruccion">Cada viajero presentará varios documentos oficiales.</p>
   <p class="instruccion">Comprueba cuidadosamente que los datos coincidan con la persona que tienes delante.</p>
@@ -84,35 +85,48 @@
 
   <div id="zonaPersona">
 
-  <h2>Pasajero</h2>
+    <h2>Pasajero</h2>
 
-  <!-- 👇 NUEVO CONTENEDOR -->
-  <div id="tarjetaPasajero">
+    <div id="tarjetaPasajero">
 
-    <img id="fotoPasajero">
+      <img id="fotoPasajero">
 
-    <div id="datosPersona">
-      <p id="nombre"></p>
-      <p id="pais"></p>
-      <p id="edad"></p>
+      <div id="datosPersona">
+        <p id="nombre"></p>
+        <p id="pais"></p>
+        <p id="edad"></p>
+      </div>
+
     </div>
 
   </div>
 
-</div>
-
   <div id="zonaDocumentos">
 
     <div id="tabsDocumentos">
-      <button class="tab activa" onclick="mostrarDocumento('pasaporte')">PASAPORTE</button>
-      <button class="tab" onclick="mostrarDocumento('tarjeta')">TARJETA</button>
+
+      <button class="tab activa" onclick="mostrarDocumento('pasaporte')">
+        PASAPORTE
+      </button>
+
+      <button class="tab" onclick="mostrarDocumento('tarjeta')">
+        TARJETA
+      </button>
+
+      <button class="tab" onclick="mostrarDocumento('visado')">
+        VISADO
+      </button>
+
     </div>
 
     <div id="contenedorDocumentos">
 
+      <!-- PASAPORTE -->
       <div id="pasaporte" class="documento activo">
         <div class="documentoHeader">REPÚBLICA DE SANCHONIA</div>
+
         <img id="fotoPasaporte" class="fotoDocumento">
+
         <div class="documentoContenido">
           <p id="pasaporteNombre"></p>
           <p id="pasaportePais"></p>
@@ -120,12 +134,28 @@
         </div>
       </div>
 
+      <!-- TARJETA -->
       <div id="tarjeta" class="documento">
         <div class="documentoHeader">TARJETA DE EMBARQUE</div>
+
         <div class="documentoContenido">
           <p id="tarjetaNombre"></p>
           <p id="tarjetaVuelo"></p>
           <p id="tarjetaAsiento"></p>
+        </div>
+      </div>
+
+      <!-- VISADO -->
+      <div id="visado" class="documento">
+        <div class="documentoHeader">
+          VISADO DE ENTRADA
+        </div>
+
+        <div class="documentoContenido">
+          <p id="visadoNombre"></p>
+          <p id="visadoPais"></p>
+          <p id="visadoMotivo"></p>
+          <p id="visadoValidez"></p>
         </div>
       </div>
 
@@ -141,18 +171,19 @@
   <div id="selloResultado"></div>
 
   <div id="logroMaximo" style="display:none;">
-  <div class="contenidoLogro">
+    <div class="contenidoLogro">
 
-    <h1>🏆 LOGRO DESBLOQUEADO</h1>
+      <h1>🏆 LOGRO DESBLOQUEADO</h1>
 
-    <img id="imagenLogro" src="assets/logros/imagen_circular_recortada.png">
+      <img id="imagenLogro" src="assets/logros/imagen_circular_recortada.png">
 
-    <p>Racista Certificado</p>
+      <p>Racista Certificado</p>
 
-    <button onclick="cerrarLogro()">Cerrar</button>
+      <button onclick="cerrarLogro()">Cerrar</button>
 
+    </div>
   </div>
-</div>
+
 </div>
 
 </body>

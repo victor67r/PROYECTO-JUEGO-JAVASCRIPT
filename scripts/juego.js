@@ -181,10 +181,8 @@ function mostrarSiguienteFrase() {
 
 function empezarJuego() {
 
-  mezclarPasajeros();   // mezcla el orden
-
-  pasajeroActual = 0;   // reinicia el índice
-
+  mezclarPasajeros();   
+  pasajeroActual = 0;   
   document.getElementById("pantallaInstrucciones")
     .style.display = "none";
 
@@ -292,17 +290,24 @@ function mostrarPasajero() {
   let tarjeta =
     generarTarjeta(p);
 
+    let visado =
+  generarVisado(p);
+
   // ============================
   // VALIDAR DATOS
   // ============================
 
   datosCorrectos =
 
+    datosCorrectos =
+
     p.nombre === pasaporte.nombre &&
     p.edad === pasaporte.edad &&
     p.pais === pasaporte.pais &&
     p.imagen === pasaporte.imagen &&
-    p.nombre === tarjeta.nombre;
+    p.nombre === tarjeta.nombre &&
+    p.nombre === visado.nombre &&
+    p.pais === visado.pais;
 
   // ============================
   // PERSONA
@@ -350,6 +355,21 @@ function mostrarPasajero() {
   document.getElementById("tarjetaAsiento")
     .innerHTML =
       "Asiento: " + tarjeta.asiento;
+      document.getElementById("visadoNombre")
+  .innerHTML =
+  "Nombre: " + visado.nombre;
+
+document.getElementById("visadoPais")
+  .innerHTML =
+  "País: " + visado.pais;
+
+document.getElementById("visadoMotivo")
+  .innerHTML =
+  "Motivo: " + visado.motivo;
+
+document.getElementById("visadoValidez")
+  .innerHTML =
+  "Validez: " + visado.validez;
 }
 
 // ============================
@@ -526,6 +546,7 @@ function mostrarDocumento(tipo) {
 
   let docs =
     document.querySelectorAll(".documento");
+
   let tabs =
     document.querySelectorAll(".tab");
 
@@ -542,16 +563,24 @@ function mostrarDocumento(tipo) {
     document.getElementById("pasaporte")
       .classList.add("activo");
 
-    tabs[0]
-      .classList.add("activa");
+    tabs[0].classList.add("activa");
 
-  } else {
+  }
+  else if (tipo === "tarjeta") {
 
     document.getElementById("tarjeta")
       .classList.add("activo");
 
-    tabs[1]
-      .classList.add("activa");
+    tabs[1].classList.add("activa");
+
+  }
+  else if (tipo === "visado") {
+
+    document.getElementById("visado")
+      .classList.add("activo");
+
+    tabs[2].classList.add("activa");
+
   }
 }
 
@@ -692,6 +721,32 @@ function borrarRanking() {
 }
 
 // ============================
+// GENERAR VISADO
+// ============================
+
+function generarVisado(p) {
+
+  let motivos = [
+    "Turismo",
+    "Trabajo",
+    "Estudios",
+    "Negocios"
+  ];
+
+  return {
+    nombre: p.nombre,
+    pais: p.pais,
+    motivo:
+      motivos[
+        Math.floor(
+          Math.random() * motivos.length
+        )
+      ],
+    validez: "31/12/2026"
+  };
+}
+
+// ============================
 // LOGRO MAXIMO
 // ============================
 
@@ -707,3 +762,4 @@ function comprobarLogroMaximo() {
 function cerrarLogro() {
   document.getElementById("logroMaximo").style.display = "none";
 }
+
