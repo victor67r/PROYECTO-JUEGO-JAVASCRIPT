@@ -324,17 +324,13 @@ function mostrarPasajero() {
   // VALIDAR DATOS
   // ============================
 
-  datosCorrectos =
-
-    datosCorrectos =
-
-    p.nombre === pasaporte.nombre &&
-    p.edad === pasaporte.edad &&
-    p.pais === pasaporte.pais &&
-    p.imagen === pasaporte.imagen &&
-    p.nombre === tarjeta.nombre &&
-    p.nombre === visado.nombre &&
-    p.pais === visado.pais;
+datosCorrectos =
+  p.nombre === pasaporte.nombre &&
+  p.edad === pasaporte.edad &&
+  p.pais === pasaporte.pais &&
+  p.imagen === pasaporte.imagen &&
+  p.nombre === tarjeta.nombre &&
+  visado.validez === "01/01/2027";
 
   // ============================
   // PERSONA
