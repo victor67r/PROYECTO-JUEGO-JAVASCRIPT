@@ -252,7 +252,33 @@ let pasajeros = [
     edad: 67,
     imagen: "assets/personajes/German.png"
   },
-  
+  {
+  nombre: "Amina El-Khatib",
+  pais: "Marruecos",
+  edad: 26,
+  imagen: "assets/personajes/amina.png"
+},
+
+{
+  nombre: "Oliver Schmidt",
+  pais: "Alemania",
+  edad: 45,
+  imagen: "assets/personajes/oliver.png"
+},
+
+{
+  nombre: "Lucía Fernández",
+  pais: "España",
+  edad: 31,
+  imagen: "assets/personajes/lucia.png"
+},
+
+{
+  nombre: "Dmitri Ivanov",
+  pais: "Rusia",
+  edad: 39,
+  imagen: "assets/personajes/dmitri.png"
+}
 ];
 
 let fotosAleatorias = [
