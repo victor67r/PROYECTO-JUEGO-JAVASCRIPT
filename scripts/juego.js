@@ -762,21 +762,18 @@ function generarVisado(p) {
 
   let nombreFinal = p.nombre;
 
-  // ============================
   // 80% correcto / 20% con error
-  // ============================
   let visadoCorrecto = Math.random() < 0.80;
 
-  let añoValidez = 2026; 
+  let validezFinal = "01/01/2027"; // ✔️ correcto por defecto
 
   if (!visadoCorrecto) {
 
     let tipoError = Math.floor(Math.random() * 2);
-    // 0 = nombre malo, 1 = caducado
+    // 0 = nombre falso, 1 = fecha falsa
 
     if (tipoError === 0) {
 
-      // ❌ nombre falso
       let nombresFalsos = [
         "Luis Mendoza",
         "Carlos Ruiz",
@@ -794,8 +791,8 @@ function generarVisado(p) {
 
     } else {
 
-  
-      añoValidez = 2025;
+      // ❌ visado caducado
+      validezFinal = "06/07/2025";
     }
   }
 
@@ -803,7 +800,7 @@ function generarVisado(p) {
     nombre: nombreFinal,
     pais: p.pais,
     motivo: motivos[Math.floor(Math.random() * motivos.length)],
-    validez: añoValidez
+    validez: validezFinal
   };
 }
 
