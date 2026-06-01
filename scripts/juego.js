@@ -556,7 +556,7 @@ function mostrarDocumento(tipo) {
 }
 
 // ============================
-// SIGUIENTE PASAJERO
+// SIGUIENTE PASAJERO:
 // ============================
 
 function siguientePasajero() {
@@ -686,11 +686,8 @@ function mostrarSello(texto) {
 function borrarRanking() {
 
   let confirmar = confirm("¿Seguro que quieres borrar todo el ranking?");
-
   if (!confirmar) return;
-
   localStorage.removeItem("ranking");
-
   cargarRankingPantallaInicio();
 }
 

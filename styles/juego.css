@@ -225,7 +225,7 @@ JUEGO (FONDO NUEVO AQUÍ)
   display:flex;
   flex-direction:column;
 
-  background-image:url("../assets/fondos/aeropuerto.jpg"); /* 👈 TU IMAGEN */
+  background-image:url("../assets/fondos/aeropuerto.jpg"); 
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
@@ -305,7 +305,7 @@ HUD
 }
 
 #Pasajero{
-  background-image: url("../assets/portada/portadapasajero.png");
+  background-image: url("../assets/portada/portadapasajero2.png");
 }
 
 #zonaPersona{
