@@ -733,8 +733,33 @@ function generarVisado(p) {
     "Negocios"
   ];
 
+  let nombreFinal = p.nombre;
+
+  //  25% de probabilidad de error en el nombre
+  let falloNombre = Math.random() < 0.25;
+
+  if (falloNombre) {
+
+    let nombresFalsos = [
+      "Luis Mendoza",
+      "Carlos Ruiz",
+      "John Smith",
+      "Ivan Petrov",
+      "Ali Hassan",
+      "Mark Johnson",
+      "Pedro Gómez"
+    ];
+
+    nombreFinal =
+      nombresFalsos[
+        Math.floor(
+          Math.random() * nombresFalsos.length
+        )
+      ];
+  }
+
   return {
-    nombre: p.nombre,
+    nombre: nombreFinal,
     pais: p.pais,
     motivo:
       motivos[
