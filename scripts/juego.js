@@ -735,39 +735,48 @@ function generarVisado(p) {
 
   let nombreFinal = p.nombre;
 
-  //  25% de probabilidad de error en el nombre
-  let falloNombre = Math.random() < 0.25;
+  // ============================
+  // 75% correcto / 25% con error
+  // ============================
+  let visadoCorrecto = Math.random() < 0.75;
 
-  if (falloNombre) {
+  let añoValidez = 2026; 
 
-    let nombresFalsos = [
-      "Luis Mendoza",
-      "Carlos Ruiz",
-      "John Smith",
-      "Ivan Petrov",
-      "Ali Hassan",
-      "Mark Johnson",
-      "Pedro Gómez"
-    ];
+  if (!visadoCorrecto) {
 
-    nombreFinal =
-      nombresFalsos[
-        Math.floor(
-          Math.random() * nombresFalsos.length
-        )
+    let tipoError = Math.floor(Math.random() * 2);
+    // 0 = nombre malo, 1 = caducado
+
+    if (tipoError === 0) {
+
+      // ❌ nombre falso
+      let nombresFalsos = [
+        "Luis Mendoza",
+        "Carlos Ruiz",
+        "John Smith",
+        "Ivan Petrov",
+        "Ali Hassan",
+        "Mark Johnson",
+        "Pedro Gómez"
       ];
+
+      nombreFinal =
+        nombresFalsos[
+          Math.floor(Math.random() * nombresFalsos.length)
+        ];
+
+    } else {
+
+  
+      añoValidez = 2025;
+    }
   }
 
   return {
     nombre: nombreFinal,
     pais: p.pais,
-    motivo:
-      motivos[
-        Math.floor(
-          Math.random() * motivos.length
-        )
-      ],
-    validez: "31/12/2026"
+    motivo: motivos[Math.floor(Math.random() * motivos.length)],
+    validez: añoValidez
   };
 }
 
